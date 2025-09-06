@@ -17,19 +17,73 @@
 </head>
 
 <body class="best-sellers-page">
-    <!-- TOP NAVIGATION -->
+    <!-- TOP NAVIGATION (copied from index.html) -->
     <div class="topbar">
         <div class="nav">
-            <a class="brand" href="index.html">
-                <img src="src/images/logo.png" alt="Monisa logo" width="120" height="50">
+            <a class="brand" href="#">
+                <img src="src\images\logo.png" alt="logo" width="120" height="50">
             </a>
 
             <nav class="menu" aria-label="Primary">
-                <a href="index.html">Shop</a>
-                <a href="bestseller.html" class="active">Best Sellers</a>
-                <a class="dropdown" href="#">By Size</a>
-                <a class="dropdown" href="#">By Style</a>
-                <a class="dropdown" href="#">By Budget</a>
+                <a href="#">Shop</a>
+                <a href="#">Best Sellers</a>
+                <div class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle">By Size <span class="material-symbols-rounded" style="font-size:18px">expand_more</span></a>
+                        <div class="dropdown-panel mega-menu" role="menu">
+                            <div class="mega-inner">
+                                <div class="mega-col">
+                                    <h4 class="mega-heading">Plans by Area (SQM)</h4>
+                                    <a href="bestseller.html">750+ SQM</a>
+                                    <a href="bestseller.html">500–750 SQM</a>
+                                    <a href="bestseller.html">400–500 SQM</a>
+                                    <a href="bestseller.html">300–400 SQM</a>
+                                    <a href="bestseller.html">200–300 SQM</a>
+                                    <a href="bestseller.html">100–200 SQM</a>
+                                    <a href="bestseller.html">Under 100 SQM</a>
+                                </div>
+                                <div class="mega-col">
+                                    <h4 class="mega-heading">Plans by Bedrooms</h4>
+                                    <a href="bestseller.html">5+ Bedrooms</a>
+                                    <a href="bestseller.html">4 Bedrooms</a>
+                                    <a href="bestseller.html">3 Bedrooms</a>
+                                    <a href="bestseller.html">2 Bedrooms</a>
+                                    <a href="bestseller.html">1 Bedroom</a>
+                                </div>
+                                <div class="mega-col">
+                                    <h4 class="mega-heading">Plans by Floors</h4>
+                                    <a href="bestseller.html">1 Floor</a>
+                                    <a href="bestseller.html">2 Floors</a>
+                                    <a href="bestseller.html">3 Floors</a>
+                                    <a href="bestseller.html">4+ Floors</a>
+                                </div>
+                                <div class="mega-thumb">
+                                    <img src="src/images/placeholderImg2.jpg" alt="Swedish Countryside" />
+                                    <span class="thumb-label">Swedish Countryside</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle">By Style <span class="material-symbols-rounded" style="font-size:18px">expand_more</span></a>
+                        <div class="dropdown-panel simple-menu" role="menu">
+                            <a href="bestseller.html">Modern House Plans</a>
+                            <a href="bestseller.html">Contemporary House Plans</a>
+                            <a href="bestseller.html">Bungalow House Plans</a>
+                            <a href="bestseller.html">Luxury House Plans</a>
+                            <a href="bestseller.html">Rustic House Plans</a>
+                            <a href="bestseller.html">Country House Plans</a>
+                        </div>
+                    </div>
+                <div class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle">By Budget <span class="material-symbols-rounded" style="font-size:18px">expand_more</span></a>
+                        <div class="dropdown-panel simple-menu" role="menu">
+                            <a href="bestseller.html">Under $100 Plans</a>
+                            <a href="bestseller.html">$100 to $300 Plans</a>
+                            <a href="bestseller.html">$300 to $500 Plans</a>
+                            <a href="bestseller.html">$500 to $700 Plans</a>
+                            <a href="bestseller.html">$700+ Plans</a>
+                        </div>
+                    </div>
                 <a href="#">Custom Plan</a>
                 <a class="dropdown" href="#">Learn</a>
             </nav>
