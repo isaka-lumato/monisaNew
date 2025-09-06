@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Monisa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,200..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,200..700,0..1,-50..200" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Top Navigation -->
+    <div class="topbar">
+        <div class="nav">
+            <a class="brand" href="#">
+                <img src="src\images\logo.png" alt="logo" width="120" height="50">
+            </a>
+
+            <nav class="menu" aria-label="Primary">
+                <a href="#">Shop</a>
+                <a href="#">Best Sellers</a>
+                <div class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle">By Size <span class="material-symbols-rounded" style="font-size:18px">expand_more</span></a>
+                        <div class="dropdown-panel mega-menu" role="menu">
+                            <div class="mega-inner">
+                                <div class="mega-col">
+                                    <h4 class="mega-heading">Plans by Area (SQM)</h4>
+                                    <a href="#">750+ SQM</a>
+                                    <a href="#">500–750 SQM</a>
+                                    <a href="#">400–500 SQM</a>
+                                    <a href="#">300–400 SQM</a>
+                                    <a href="#">200–300 SQM</a>
+                                    <a href="#">100–200 SQM</a>
+                                    <a href="#">Under 100 SQM</a>
+                                </div>
+                                <div class="mega-col">
+                                    <h4 class="mega-heading">Plans by Bedrooms</h4>
+                                    <a href="#">5+ Bedrooms</a>
+                                    <a href="#">4 Bedrooms</a>
+                                    <a href="#">3 Bedrooms</a>
+                                    <a href="#">2 Bedrooms</a>
+                                    <a href="#">1 Bedroom</a>
+                                </div>
+                                <div class="mega-col">
+                                    <h4 class="mega-heading">Plans by Floors</h4>
+                                    <a href="#">1 Floor</a>
+                                    <a href="#">2 Floors</a>
+                                    <a href="#">3 Floors</a>
+                                    <a href="#">4+ Floors</a>
+                                </div>
+                                <div class="mega-thumb">
+                                    <img src="src/images/placeholderImg2.jpg" alt="Swedish Countryside" />
+                                    <span class="thumb-label">Swedish Countryside</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle">By Style <span class="material-symbols-rounded" style="font-size:18px">expand_more</span></a>
+                        <div class="dropdown-panel simple-menu" role="menu">
+                            <a href="#">Modern House Plans</a>
+                            <a href="#">Contemporary House Plans</a>
+                            <a href="#">Bungalow House Plans</a>
+                            <a href="#">Luxury House Plans</a>
+                            <a href="#">Rustic House Plans</a>
+                            <a href="#">Country House Plans</a>
+                        </div>
+                    </div>
+                <div class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle">By Budget <span class="material-symbols-rounded" style="font-size:18px">expand_more</span></a>
+                        <div class="dropdown-panel simple-menu" role="menu">
+                            <a href="#">Under $100 Plans</a>
+                            <a href="#">$100 to $300 Plans</a>
+                            <a href="#">$300 to $500 Plans</a>
+                            <a href="#">$500 to $700 Plans</a>
+                            <a href="#">$700+ Plans</a>
+                        </div>
+                    </div>
+                <a href="#">Custom Plan</a>
+                <a class="dropdown" href="#">Learn</a>
+            </nav>
+
+            <div class="actions" aria-label="Utilities">
+                <a class="icon-btn" href="#" title="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 21l-4.2-4.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                    </svg>
+                </a>
+                <a class="icon-btn" href="#" title="Favorites">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 21s-7-4.4-7-10a4.1 4.1 0 0 1 7-2.8A4.1 4.1 0 0 1 19 11c0 5.6-7 10-7 10Z"
+                            stroke="currentColor" stroke-width="2" fill="none" />
+                    </svg>
+                </a>
+                <a class="icon-btn" href="#" title="Compare">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 20V10M18 20V4M10 20V14M14 20V7" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                </a>
+                <a class="icon-btn" href="#" title="Account">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2" />
+                        <path d="M4 20a8 8 0 0 1 16 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                </a>
+                <a class="icon-btn" href="#" title="Cart">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <circle cx="9" cy="20" r="1.8" stroke="currentColor" stroke-width="2" />
+                        <circle cx="17" cy="20" r="1.8" stroke="currentColor" stroke-width="2" />
+                        <path d="M3 4h2l2.4 10.5A2 2 0 0 0 9.3 16h6.9a2 2 0 0 0 1.9-1.5L20 8H6" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" role="banner" aria-label="Featured">
+        <img class="bg" id="heroBg"
+            src="src\images\placeholderImg1.jpg"
+            alt="Modern house with pool">
+        <div class="hero-inner">
+            <h1 class="headline">The smartest way to<br />build your home.</h1>
+        </div>
+
+        <!-- Right pagination dots -->
+        <div class="pager" aria-label="Slides">
+            <button class="dot active" data-slide="0" aria-current="true" aria-label="Slide 1">1</button>
+            <button class="dot" data-slide="1" aria-label="Slide 2">2</button>
+            <button class="dot" data-slide="2" aria-label="Slide 3">3</button>
+        </div>
+    </section>
+    <section class="">
+        <!-- Bottom features strip -->
+        <div class="features" aria-label="Key benefits">
+            <div class="feat">
+                <span class="material-symbols-rounded">download</span>
+                <div>Instant digital delivery</div>
+            </div>
+            <div class="feat">
+                <span class="material-symbols-rounded">verified</span>
+                <div>100% Money Guarantee</div>
+            </div>
+            <div class="feat">
+                <span class="material-symbols-rounded">payments</span>
+                <div>Multiple payment options</div>
+            </div>
+            <div class="feat">
+                <span class="material-symbols-rounded">home</span>
+                <div>Customizable house plans</div>
+            </div>
+            <div class="feat">
+                <span class="material-symbols-rounded">calculate</span>
+                <div>Construction cost estimates</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES SECTION -->
+    <section class="categories" aria-label="Browse plan categories">
+        <div class="cat-list">
+            <a class="cat-card" href="#">
+                <img src="src\images\placeholderImg1.jpg" alt="Duplex & Multi-Family">
+                <span class="label">Duplex & Multi-Family<br><small>House Plans</small></span>
+            </a>
+            <a class="cat-card" href="#">
+                <img src="src\images\placeholderImg1.jpg" alt="Apartment Plans">
+                <span class="label">Apartment<br><small>Plans</small></span>
+            </a>
+            <a class="cat-card" href="#">
+                <img src="src\images\placeholderImg1.jpg" alt="Modern Farmhouse">
+                <span class="label">Modern Farm<br><small>House Plans</small></span>
+            </a>
+            <a class="cat-card" href="#">
+                <img src="src\images\placeholderImg2.jpg" alt="Bungalow Plans">
+                <span class="label">Bungalow<br><small>Plans</small></span>
+            </a>
+            <a class="cat-card" href="#">
+                <img src="src\images\placeholderImg2.jpg" alt="Modern House Plans">
+                <span class="label">Modern House<br><small>Plans</small></span>
+            </a>
+        </div>
+        <div class="stat-count" aria-hidden="true">+5,000</div>
+        <h2 class="stat-subtitle">Dream homes brought to life with Maramani</h2>
+    </section>
+
+    <!-- HOUSE PLANS SECTION -->
+    <section class="house-plans" aria-label="Plans for every family size">
+        <h2 class="plans-title">Plans for every family size</h2>
+        <p class="plans-subtitle">We believe that every family deserves a home that perfectly fits their unique needs
+            and lifestyle</p>
+        <div class="plans-view-all">
+            <a href="#">View all <span class="material-symbols-rounded">arrow_forward</span></a>
+        </div>
+
+        <div class="plans-slider-container">
+            <button class="slider-nav slider-prev" aria-label="Previous slide">
+                <span class="material-symbols-rounded">chevron_left</span>
+            </button>
+
+            <div class="plans-slider">
+                <div class="plans-card">
+                    <img src="src\images\placeholderImg1.jpg" alt="3 Bedroom House Plans">
+                    <div class="plans-label">3 Bedroom House Plans</div>
+                </div>
+                <div class="plans-card">
+                    <img src="src\images\placeholderImg2.jpg" alt="4 Bedroom House Plans">
+                    <div class="plans-label">4 Bedroom House Plans</div>
+                </div>
+                <div class="plans-card">
+                    <img src="src\images\placeholderImg1.jpg" alt="2 Bedroom House Plans">
+                    <div class="plans-label">2 Bedroom House Plans</div>
+                </div>
+                <div class="plans-card">
+                    <img src="src\images\placeholderImg2.jpg" alt="5+ Bedroom House Plans">
+                    <div class="plans-label">5+ Bedroom House Plans</div>
+                </div>
+                <div class="plans-card">
+                    <img src="src\images\placeholderImg1.jpg" alt="1 Bedroom House Plans">
+                    <div class="plans-label">1 Bedroom House Plans</div>
+                </div>
+            </div>
+
+            <button class="slider-nav slider-next" aria-label="Next slide">
+                <span class="material-symbols-rounded">chevron_right</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- HOUSE PLANS FOR EVERY BUDGET SECTION -->
+    <section class="house-plans" aria-label="Plans for every budget">
+        <h2 class="plans-title">Plans for every budget</h2>
+        <p class="plans-subtitle">Our team is skilled at finding innovative ways to save costs without sacrificing
+            aesthetics .</p>
+        <div class="plans-view-all">
+            <a href="#">View all <span class="material-symbols-rounded">arrow_forward</span></a>
+        </div>
+
+        <div class="plans-slider-container">
+            <button class="slider-nav slider-prev" aria-label="Previous slide">
+                <span class="material-symbols-rounded">chevron_left</span>
+            </button>
+
+            <div class="plans-slider">
+                <div class="plans-card plans-card--517x341">
+                    <img src="src\images\placeholderImg1.jpg" alt="Under $100 Plans">
+                    <div class="plans-label">Under $100 Plans</div>
+                </div>
+                <div class="plans-card plans-card--517x341">
+                    <img src="src\images\placeholderImg2.jpg" alt="$100 to $300 Plans">
+                    <div class="plans-label">$100 to $300 Plans</div>
+                </div>
+                <div class="plans-card plans-card--517x341">
+                    <img src="src\images\placeholderImg1.jpg" alt="$300 to $500 Plans">
+                    <div class="plans-label">$300 to $500 Plans</div>
+                </div>
+            </div>
+
+            <button class="slider-nav slider-next" aria-label="Next slide">
+                <span class="material-symbols-rounded">chevron_right</span>
+            </button>
+        </div>
+    </section>
+
+
+
+    <!-- Floating Elements -->
+    <div class="floating-judgeme-reviews" role="tab">
+        <span>★ Judge.me Reviews</span>
+    </div>
+
+    <div class="floating-discount-banner">
+        <div class="discount-circle">
+            <span class="material-symbols-rounded">card_giftcard</span>
+        </div>
+        <div class="discount-label">
+            Get 10% Off
+            <div class="discount-pointer"></div>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp -->
+    <a class="whatsapp" href="https://wa.me/0000000000" target="_blank" rel="noopener">
+        <span class="wa-bubble">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M20.5 12A8.5 8.5 0 1 1 6.6 19.9L3.5 21l1.2-3a8.5 8.5 0 0 1 15.8-6.1z" stroke="white"
+                    stroke-width="2" opacity=".25" />
+                <path
+                    d="M16.7 14.5c-.2.6-1.3 1.1-1.8 1.1-.5 0-1.8-.2-3.3-1.4-1.4-1.1-2.4-2.6-2.6-3.1-.2-.5-.2-1.2.3-1.7.2-.2.5-.6.6-.8.1-.2.2-.4.4-.4.2 0 .3 0 .4.1l.9 1.2c.1.2.1.4 0 .6-.1.2-.3.4-.4.6-.1.1-.1.2 0 .4.2.5.8 1.3 1.4 1.7.7.5 1.2.6 1.4.6.1 0 .3 0 .4-.2l.7-.8c.1-.1.3-.1.5 0l1.3.6c.2.1.2.2.2.4z"
+                    fill="white" />
+            </svg>
+        </span>
+        <span>WhatsApp</span>
+    </a>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials" aria-label="Customer testimonials">
+        <div class="testimonials-inner">
+            <div class="stars" aria-hidden="true">★ ★ ★ ★ ★</div>
+
+            <div class="testimonials-slider" role="region" aria-roledescription="carousel" aria-label="Testimonials">
+                <div class="testimonial-slide active" aria-roledescription="slide" aria-label="1 of 5">
+                    <blockquote class="testimonial-quote">Very efficient, timely and money well spent. I loved the house
+                        plan and I received it immediately upon making payment. Thank you for your wonderful services. I
+                        recommend anyone buy from here without any reservations.</blockquote>
+                    <div class="testimonial-author">Ekong Richard</div>
+                </div>
+                <div class="testimonial-slide" aria-roledescription="slide" aria-label="2 of 5">
+                    <blockquote class="testimonial-quote">Smooth experience from browsing to checkout. The drawings were
+                        clear and my contractor was impressed with the level of detail.</blockquote>
+                    <div class="testimonial-author">Aisha Mwende</div>
+                </div>
+                <div class="testimonial-slide" aria-roledescription="slide" aria-label="3 of 5">
+                    <blockquote class="testimonial-quote">Customer support was fantastic and helped me tweak the plan to
+                        fit our plot perfectly. Highly recommended.</blockquote>
+                    <div class="testimonial-author">Peter Ochieng</div>
+                </div>
+                <div class="testimonial-slide" aria-roledescription="slide" aria-label="4 of 5">
+                    <blockquote class="testimonial-quote">Great value for money. I received my files instantly and
+                        started my approvals the same day.</blockquote>
+                    <div class="testimonial-author">Grace Namatovu</div>
+                </div>
+                <div class="testimonial-slide" aria-roledescription="slide" aria-label="5 of 5">
+                    <blockquote class="testimonial-quote">Professional, reliable and fast. The plan matched exactly what
+                        we had in mind and saved us weeks.</blockquote>
+                    <div class="testimonial-author">Brian K.</div>
+                </div>
+            </div>
+
+            <div class="testimonial-controls">
+                <button class="t-nav t-prev" aria-label="Previous testimonial">
+                    <span class="material-symbols-rounded">chevron_left</span>
+                </button>
+                <div class="t-dots" role="tablist" aria-label="Select testimonial">
+                    <button class="t-dot active" aria-label="Go to testimonial 1" role="tab"></button>
+                    <button class="t-dot" aria-label="Go to testimonial 2" role="tab"></button>
+                    <button class="t-dot" aria-label="Go to testimonial 3" role="tab"></button>
+                    <button class="t-dot" aria-label="Go to testimonial 4" role="tab"></button>
+                    <button class="t-dot" aria-label="Go to testimonial 5" role="tab"></button>
+                </div>
+                <button class="t-nav t-next" aria-label="Next testimonial">
+                    <span class="material-symbols-rounded">chevron_right</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Best selling plans Section-->
+    <!-- BEST SELLING PLANS SECTION -->
+    <section class="best-selling-section" aria-label="Best selling plans">
+        <header class="bs-header">
+            <div class="bs-head-left">
+                <h2 class="bs-title">Best selling plans</h2>
+                <p class="bs-subtitle">We understand that a home should be as functional as it is beautiful.</p>
+            </div>
+            <a href="#" class="bs-view-all">View all <span class="material-symbols-rounded">arrow_forward</span></a>
+        </header>
+
+        <div class="bs-slider-container">
+            <button class="bs-nav bs-prev" aria-label="Previous slide"><span class="material-symbols-rounded">chevron_left</span></button>
+
+            <div class="bs-slider" tabindex="0">
+                <!-- Card 1 -->
+                <article class="bs-card" aria-labelledby="bs-title-1">
+                    <div class="bs-card-media">
+                        <img src="src/images/placeholderImg1.jpg" alt="Two-story 4 bedroom house" class="bs-card-image">
+                        <span class="bs-card-badge">Best Seller</span>
+                    </div>
+                    <div class="bs-card-info">
+                        <h3 class="bs-card-title" id="bs-title-1">Two-story 4 bedroom house - ID 24411</h3>
+                        <div class="bs-row">
+                            <p class="bs-card-price">From $270.00</p>
+                            <div class="bs-card-rating" aria-label="4.5 out of 5 stars">
+                                <span class="material-symbols-rounded filled">star</span>
+                                <span class="material-symbols-rounded filled">star</span>
+                                <span class="material-symbols-rounded filled">star</span>
+                                <span class="material-symbols-rounded filled">star</span>
+                                <span class="material-symbols-rounded">star</span>
+                            </div>
+                        </div>
+                        <hr class="bs-divider">
+                        <div class="bs-specs">
+                            <div class="spec-item"><span class="material-symbols-rounded">roofing</span><span>2 Floors</span></div>
+                            <div class="spec-item"><span class="material-symbols-rounded">bed</span><span>4 Bedrooms</span></div>
+                            <div class="spec-item"><span class="material-symbols-rounded">bathtub</span><span>4 Bathrooms</span></div>
+                            <div class="spec-item"><span class="material-symbols-rounded">square_foot</span><span>300 Area</span></div>
+                        </div>
+                        <div class="bs-specs-bottom" aria-hidden="false">
+                            <div class="m-item"><span class="material-symbols-rounded">height</span><span>13.3 m</span></div>
+                            <div class="m-item"><span class="material-symbols-rounded">straighten</span><span>14.9 m</span></div>
+                            <div class="m-item"><span class="material-symbols-rounded">square_foot</span><span>300 Area</span></div>
+                            <div class="m-item"><span class="material-symbols-rounded">pin_drop</span><span>&nbsp;</span></div>
+                        </div>
+                    </div>
+                </article>
+                <!-- Card 2 -->
+                <article class="bs-card" aria-labelledby="bs-title-2">
+                    <div class="bs-card-media">
+                        <img src="src/images/placeholderImg2.jpg" alt="Contemporary 3 bedroom house" class="bs-card-image">
+                        <span class="bs-card-badge">Best Seller</span>
+                    </div>
+                    <div class="bs-card-info">
+                        <h3 class="bs-card-title" id="bs-title-2">Contemporary 3 bedroom house - ID 13418</h3>
+                        <div class="bs-row">
+                            <p class="bs-card-price">From $181.80</p>
+                            <div class="bs-card-rating" aria-label="4 out of 5 stars">
+                                <span class="material-symbols-rounded filled">star</span>
+                                <span class="material-symbols-rounded filled">star</span>
+                                <span class="material-symbols-rounded filled">star</span>
+                                <span class="material-symbols-rounded filled">star</span>
+                                <span class="material-symbols-rounded">star</span>
+                            </div>
+                        </div>
+                        <hr class="bs-divider">
+                        <div class="bs-specs">
+                            <div class="spec-item"><span class="material-symbols-rounded">roofing</span><span>1 Floor</span></div>
+                            <div class="spec-item"><span class="material-symbols-rounded">bed</span><span>3 Bedrooms</span></div>
+                            <div class="spec-item"><span class="material-symbols-rounded">bathtub</span><span>2 Bathrooms</span></div>
+                            <div class="spec-item"><span class="material-symbols-rounded">square_foot</span><span>202 Area</span></div>
+                        </div>
+                        <div class="bs-specs-bottom" aria-hidden="false">
+                            <div class="m-item"><span class="material-symbols-rounded">height</span><span>15 m</span></div>
+                            <div class="m-item"><span class="material-symbols-rounded">straighten</span><span>17 m</span></div>
+                            <div class="m-item"><span class="material-symbols-rounded">square_foot</span><span>202 Area</span></div>
+                            <div class="m-item"><span class="material-symbols-rounded">pin_drop</span><span>&nbsp;</span></div>
+                        </div>
+                    </div>
+                </article>
+                <!-- Card 3 -->
+                <article class="bs-card" aria-labelledby="bs-title-3">
+                    <div class="bs-card-media">
+                        <img src="src/images/placeholderImg1.jpg" alt="8 bedroom modern mansion" class="bs-card-image">
+                        <span class="bs-card-badge">Best Seller</span>
+                    </div>
+                    <div class="bs-card-info">
+                        <h3 class="bs-card-title" id="bs-title-3">8 bedroom Modern contemporary mansion - ID 38901</h3>
+                        <div class="bs-row">
+                            <p class="bs-card-price">From $1,961.20</p>
+                            <div class="bs-card-rating" aria-label="5 out of 5 stars">
+                                <span class="material-symbols-rounded filled">star</span>
+                                <span class="material-symbols-rounded filled">star</span>
+                                <span class="material-symbols-rounded filled">star</span>
+                                <span class="material-symbols-rounded filled">star</span>
+                                <span class="material-symbols-rounded filled">star</span>
+                            </div>
+                        </div>
+                        <hr class="bs-divider">
+                        <div class="bs-specs">
+                            <div class="spec-item"><span class="material-symbols-rounded">roofing</span><span>3 Floors</span></div>
+                            <div class="spec-item"><span class="material-symbols-rounded">bed</span><span>8 Bedrooms</span></div>
+                            <div class="spec-item"><span class="material-symbols-rounded">bathtub</span><span>10 Bathrooms</span></div>
+                            <div class="spec-item"><span class="material-symbols-rounded">square_foot</span><span>1,068 Area</span></div>
+                        </div>
+                        <div class="bs-specs-bottom" aria-hidden="false">
+                            <div class="m-item"><span class="material-symbols-rounded">height</span><span>17 m</span></div>
+                            <div class="m-item"><span class="material-symbols-rounded">straighten</span><span>32 m</span></div>
+                            <div class="m-item"><span class="material-symbols-rounded">square_foot</span><span>1,068 Area</span></div>
+                            <div class="m-item"><span class="material-symbols-rounded">pin_drop</span><span>&nbsp;</span></div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <button class="bs-nav bs-next" aria-label="Next slide"><span class="material-symbols-rounded">chevron_right</span></button>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer class="site-footer" aria-label="Site footer">
+        <div class="footer-top">
+            <div class="footer-newsletter">
+                <h3 class="footer-newsletter-title">From Dream to Home</h3>
+                <p class="footer-newsletter-sub">Get fresh house plan ideas, tips and exclusive offers.</p>
+                <form class="newsletter-form" action="#" method="post" onsubmit="return false">
+                    <label class="sr-only" for="nl-email">Email</label>
+                    <input id="nl-email" type="email" placeholder="Enter your email" required>
+                    <button type="submit"><span class="material-symbols-rounded">send</span>Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a class="brand footer-brand" href="#">
+                    <img src="src/images/logo.png" alt="Monisa logo" width="120" height="50">
+                </a>
+                <p class="footer-text">We help you discover, customize and purchase architectural plans that fit your lifestyle and budget.</p>
+                <div class="footer-social" aria-label="Social links">
+                    <a href="#" aria-label="Facebook"><span class="material-symbols-rounded">thumb_up</span></a>
+                    <a href="#" aria-label="Instagram"><span class="material-symbols-rounded">photo_camera</span></a>
+                    <a href="#" aria-label="Twitter"><span class="material-symbols-rounded">alternate_email</span></a>
+                    <a href="#" aria-label="YouTube"><span class="material-symbols-rounded">play_circle</span></a>
+                </div>
+            </div>
+
+            <nav class="footer-col" aria-label="Shop">
+                <h4 class="footer-title">Shop</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Best Sellers</a></li>
+                    <li><a href="#">By Size</a></li>
+                    <li><a href="#">By Style</a></li>
+                    <li><a href="#">By Budget</a></li>
+                    <li><a href="#">Custom Plan</a></li>
+                </ul>
+            </nav>
+
+            <nav class="footer-col" aria-label="Help">
+                <h4 class="footer-title">Help</h4>
+                <ul class="footer-links">
+                    <li><a href="#">How it works</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Licensing</a></li>
+                    <li><a href="#">Refund policy</a></li>
+                    <li><a href="#">Contact support</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer-col" aria-label="Contact">
+                <h4 class="footer-title">Contact</h4>
+                <ul class="footer-contact">
+                    <li><span class="material-symbols-rounded">mail</span> support@monisa.example</li>
+                    <li><span class="material-symbols-rounded">call</span> +1 (555) 123-4567</li>
+                    <li><span class="material-symbols-rounded">schedule</span> Mon–Fri, 9am–6pm</li>
+                    <li><span class="material-symbols-rounded">pin_drop</span> Silicon Valley, CA</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-copy">© <span id="year"></span> Monisa. All rights reserved.</div>
+            <div class="footer-legal">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
