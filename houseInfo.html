@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>House Plan Details - Monisa</title>
+    <!-- Fonts and icons (same as index.html) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,200..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,200..700,0..1,-50..200" />
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Scoped styles for this page only -->
+    <style>
+        /* Page container */
+        .hi-wrap {
+            max-width: 100%;
+
+            margin: 28px 5% 80px;
+            padding: 0 20px;
+        }
+
+        /* Top card: gallery + info */
+        .hi-card {
+            display: grid;
+            gap: 28px;
+            background: #fff;
+            border: 1px solid #eef0f3;
+            border-radius: 12px;
+            box-shadow: var(--shadow, 0 8px 24px rgba(0, 0, 0, .08));
+            padding: 18px;
+        }
+
+        /* Gallery */
+        .hi-gallery {
+            display: grid;
+            /* Thumbs fixed at 86px, image column prefers 720px, right panel 380-480px */
+            grid-template-columns: 86px minmax(720px, 1fr) minmax(380px, 480px);
+            gap: 20px;
+            align-items: start;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        /* Explicit placement to keep columns consistent */
+        .hi-thumbs {
+            grid-column: 1;
+        }
+
+        .hi-cardIC {
+            grid-column: 2;
+            justify-self: center;
+            width: 100%;
+            max-width: 720px;
+        }
+
+        .hi-gallery .hi-info {
+            grid-column: 3;
+            justify-self: center;
+            width: 100%;
+            max-width: 460px;
+        }
+
+        .hi-thumbs {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 520px;
+            overflow: auto;
+            padding-right: 4px;
+        }
+
+        .hi-thumb {
+            width: 86px;
+            height: 72px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            cursor: pointer;
+            flex: 0 0 auto;
+        }
+
+        .hi-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hi-thumb.active {
+            border-color: #6d28d9;
+            box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.25) inset;
+        }
+
+        .hi-main {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 720px;
+            aspect-ratio: 3 / 2;
+            /* 720x480 */
+            background: #f3f4f6;
+            display: grid;
+            place-items: center;
+            margin: 0 auto;
+            border: 1px solid #e5e7eb;
+        }
+
+        .hi-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Place specs under main image within the gallery */
+        .hi-specs.below {
+            grid-column: 2 / 3;
+            margin-top: 12px;
+            padding: 14px 8px 6px;
+            grid-template-columns: repeat(3, 1fr);
+            row-gap: 16px;
+            column-gap: 0;
+            color: #1A1A1A;
+            font-size: 15px;
+            /* Continuous vertical separators between the 3 columns */
+            background-image: linear-gradient(#d1d5db, #d1d5db), linear-gradient(#d1d5db, #d1d5db);
+            background-size: 1px 100%, 1px 100%;
+            background-position: 33.333% 0, 66.666% 0;
+            background-repeat: no-repeat;
+        }
+
+        .hi-specs.below .hi-spec {
+            text-align: center;
+            padding: 6px 16px;
+        }
+
+        /* remove per-item borders; container draws continuous separators */
+        .hi-specs.below .hi-spec {
+            border-right: none;
+        }
+
+        /* icon style: bold, solid, dark */
+        .hi-specs.below .material-symbols-rounded {
+            font-size: 30px;
+            color: #0b0f15;
+            font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Right info column */
+        .hi-info h1 {
+            font-size: 3rem;
+            margin: 0;
+            color: #0b0f15;
+        }
+
+        .hi-meta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        /* Info column blocks */
+        .hi-stars {
+            display: flex;
+            gap: 6px;
+            color: #10b981;
+            margin: 18px 0 8px;
+        }
+
+        .hi-stars .material-symbols-rounded {
+            font-size: 24px;
+        }
+
+        .hi-pill {
+            display: inline-block;
+            background: #7c3aed;
+            color: #fff;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            margin: 4px 0 12px;
+        }
+
+        .hi-box {
+            background: #fff;
+            border: 1px solid #eef0f3;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .04);
+        }
+
+        .hi-box h4 {
+            margin: 0 0 12px;
+            font-size: 14px;
+            color: #374151;
+            font-weight: 800;
+        }
+
+        .opt-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 10px;
+            font-size: 16px;
+            font-color: #1A1A1A;
+        }
+
+        .opt-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #111827;
+        }
+
+        .opt-list input[type="radio"],
+        .opt-list input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #6d28d9;
+        }
+
+        .hi-perks {
+            display: grid;
+            gap: 14px;
+            margin: 18px 0;
+        }
+
+        .hi-perk {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #0b0f15;
+        }
+
+        .hi-perk .material-symbols-rounded {
+            font-size: 22px;
+            color: #374151;
+        }
+
+        .hi-buybar {
+            position: relative;
+            margin-top: 16px;
+        }
+
+        .hi-buybtn {
+            width: 100%;
+            background: #f97316;
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            padding: 16px 18px;
+            font-weight: 800;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(249, 115, 22, .35);
+        }
+
+        .hi-price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin: 10px 0 12px;
+        }
+
+        .hi-price {
+            font-weight: 800;
+            color: #2563eb;
+        }
+
+        .hi-rating {
+            display: flex;
+            gap: 2px;
+        }
+
+        .hi-rating .material-symbols-rounded {
+            font-size: 20px;
+            color: #a1a1aa;
+        }
+
+        .hi-rating .filled {
+            color: #10b981;
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .hi-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 12px 0 8px;
+        }
+
+        .hi-btn {
+            border: 1px solid #e5e7eb;
+            background: #fff;
+            color: #111827;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .hi-btn.primary {
+            background: #f97316;
+            color: #fff;
+            border-color: #f97316;
+            border-radius: 10px;
+            min-width: 180px;
+        }
+
+        .hi-btn.full {
+            text-align: center;
+        }
+
+        .hi-overview {
+            background: #fafafa;
+            border: 1px solid #eef0f3;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-top: 10px;
+            color: #374151;
+            line-height: 1.6;
+            font-size: 14px;
+            max-height: 230px;
+            overflow: auto;
+        }
+
+        /* Quick specs row */
+        .hi-specs {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin-top: 18px;
+            padding-top: 12px;
+            /* border-top: 1px solid #e5e7eb; */
+        }
+
+        .hi-spec {
+            display: grid;
+            justify-items: center;
+            gap: 6px;
+            color: #374151;
+            font-size: 13px;
+        }
+
+        .hi-spec .material-symbols-rounded {
+            color: #6b7280;
+        }
+
+        /* Section title */
+        .hi-section-title {
+            margin: 36px 0 12px;
+            font-size: 18px;
+            font-weight: 800;
+            color: #0b0f15;
+            display: grid;
+            grid-auto-flow: column;
+            justify-content: start;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hi-section-sub {
+            color: #6b7280;
+            margin: 0 0 18px;
+            font-size: 14px;
+        }
+
+        /* You may also like: heading sizing and spacing */
+        .ym-title {
+            margin: 44px 0 16px;
+            font-size: clamp(28px, 3vw, 40px);
+            /* slightly bigger */
+            font-weight: 800;
+            color: #0b0f15;
+        }
+
+        /* Included items (3 columns) */
+        .hi-included {
+            background: #fff;
+            border: 1px solid #eef0f3;
+            border-radius: 12px;
+            padding: 18px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .hi-inc-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px 14px;
+        }
+
+        .hi-inc-title {
+            font-weight: 800;
+            margin: 0 0 8px;
+        }
+
+        .hi-inc-list {
+            margin: 0;
+            padding-left: 18px;
+            color: #374151;
+        }
+
+        /* You may also like: container and slider */
+        .hi-rel {
+            background: transparent;
+            border: none;
+            padding: 0;
+        }
+
+        .hi-rel-slider {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 480px;
+            /* slightly smaller card */
+            gap: 16px;
+            /* tighter spacing between cards */
+            overflow-x: auto;
+            padding: 6px 4px 12px;
+            scroll-snap-type: x mandatory;
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+            margin: 0 auto;
+            /* center slider track */
+        }
+
+        .hi-rel-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hi-rel-card {
+            scroll-snap-align: start;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .06);
+            width: 480px;
+            /* slightly smaller */
+        }
+
+        .hi-rel-card img {
+            width: 100%;
+            height: 320px;
+            /* scaled down proportionally */
+            object-fit: cover;
+            display: block;
+        }
+
+        .hi-rel-body {
+            padding: 16px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .hi-rel-title {
+            font-size: 16px;
+            font-weight: 800;
+            margin: 0;
+            color: #0b0f15;
+        }
+
+        .hi-rel-specs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            /* border-top: 1px solid #e5e7eb; */
+            padding-top: 10px;
+            color: #374151;
+            font-size: 12px;
+        }
+
+        /* Extra details inside the card to match reference */
+        .rel-price {
+            margin: 2px 0 12px;
+            color: #6b7280;
+            /* lighter as in screenshot */
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .rel-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .rel-stars {
+            color: #10b981;
+            display: inline-flex;
+            gap: 2px;
+        }
+
+        .rel-stars .material-symbols-rounded {
+            font-size: 18px;
+        }
+
+        .rel-stars .filled {
+            font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .rel-divider {
+            height: 1px;
+            border: 0;
+            background: #e5e7eb;
+            margin: 8px 0;
+        }
+
+        /* 3 columns x 2 rows specs block */
+        .rel-specs-3x2 {
+            /* border-top: 1px solid #e5e7eb; */
+            margin-top: 8px;
+            padding-top: 8px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .rel-col {
+            display: grid;
+            grid-template-rows: auto auto;
+            justify-items: center;
+            row-gap: 14px;
+            padding: 12px 12px;
+        }
+
+        .rel-col:not(:last-child) {
+            border-right: 1px solid #e5e7eb;
+        }
+
+        .rel-top {
+            display: grid;
+            justify-items: center;
+            row-gap: 6px;
+            color: #0b0f15;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .rel-top .material-symbols-rounded {
+            font-size: 24px;
+            color: #0b0f15;
+            font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .rel-bottom {
+            display: grid;
+            justify-items: center;
+            row-gap: 6px;
+            color: #111827;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .rel-bottom .material-symbols-rounded {
+            font-size: 18px;
+            color: #6b7280;
+        }
+
+        /* Slider footer: divider + round nav buttons at right */
+        .hi-rel-foot {
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .hi-rel-hr {
+            height: 1px;
+            border: 0;
+            background: #d1d5db;
+        }
+
+        .hi-rel-controls {
+            position: absolute;
+            right: 0;
+            bottom: -22px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .hi-rel-nav {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid #e5e7eb;
+            background: #f8fafc;
+            display: grid;
+            place-items: center;
+            color: #0b0f15;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, .06);
+        }
+
+        .hi-rel-nav:hover {
+            background: #fff;
+        }
+
+        /* FAQ */
+        .hi-faq-title {
+            font-size: clamp(28px, 3vw, 40px);
+            font-weight: 800;
+            margin: 0 0 8px;
+            color: #0b0f15;
+        }
+
+        .hi-faq-meta {
+            color: #6b7280;
+            margin: 4px 0;
+            font-size: 14px;
+        }
+
+        .hi-faq {
+            background: transparent;
+            border: none;
+            border-radius: 12px;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        .hi-faq-sub {
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .hi-qa {
+            display: grid;
+            gap: 0;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 8px 0;
+        }
+
+        .hi-qa details {
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            overflow: hidden;
+        }
+
+        .hi-qa summary {
+            cursor: pointer;
+            font-weight: 700;
+            color: #111827;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+        }
+
+        .hi-qa summary::after {
+            content: 'expand_more';
+            font-family: 'Material Symbols Rounded';
+            color: #6b7280;
+            background: #e5e7eb;
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            font-size: 20px;
+            transition: transform .2s ease;
+        }
+
+        .hi-qa details[open] summary::after {
+            transform: rotate(180deg);
+            background: #111827;
+            color: #fff;
+        }
+
+        .hi-answer {
+            padding: 0 16px 14px;
+            color: #374151;
+            font-size: 14px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .hi-qa details:not(:last-child) {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hi-card {
+                grid-template-columns: 1fr;
+            }
+
+            .hi-rel-slider {
+                grid-auto-columns: minmax(260px, 1fr);
+            }
+
+            .hi-included {
+                grid-template-columns: 1fr;
+            }
+
+            .hi-faq {
+                grid-template-columns: 1fr;
+            }
+
+            .hi-specs {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .hi-main {
+                height: 420px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hi-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .hi-thumbs {
+                flex-direction: row;
+                height: auto;
+                max-height: none;
+            }
+
+            .hi-thumb {
+                width: 84px;
+                height: 64px;
+            }
+
+            .hi-rel-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hi-main {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Navigation (copied from index.html for consistency) -->
+    <div class="topbar">
+        <div class="nav">
+            <a class="brand" href="index.html">
+                <img src="src/images/logo.png" alt="logo" width="120" height="50">
+            </a>
+
+            <nav class="menu" aria-label="Primary">
+                <a href="index.html">Shop</a>
+                <a href="bestseller.html">Best Sellers</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle">By Size <span class="material-symbols-rounded"
+                            style="font-size:18px">expand_more</span></a>
+                    <div class="dropdown-panel mega-menu" role="menu">
+                        <div class="mega-inner">
+
+                            <div class="mega-col">
+                                <h4 class="mega-heading">Plans by Area (SQM)</h4>
+                                <a href="bestseller.html">750+ SQM</a>
+                                <a href="bestseller.html">500–750 SQM</a>
+                                <a href="bestseller.html">400–500 SQM</a>
+                                <a href="bestseller.html">300–400 SQM</a>
+                                <a href="bestseller.html">200–300 SQM</a>
+                                <a href="bestseller.html">100–200 SQM</a>
+                                <a href="bestseller.html">Under 100 SQM</a>
+                            </div>
+                            <div class="mega-col">
+                                <h4 class="mega-heading">Plans by Bedrooms</h4>
+                                <a href="bestseller.html">5+ Bedrooms</a>
+                                <a href="bestseller.html">4 Bedrooms</a>
+                                <a href="bestseller.html">3 Bedrooms</a>
+                                <a href="bestseller.html">2 Bedrooms</a>
+                                <a href="bestseller.html">1 Bedroom</a>
+                            </div>
+                            <div class="mega-col">
+                                <h4 class="mega-heading">Plans by Floors</h4>
+                                <a href="bestseller.html">1 Floor</a>
+                                <a href="bestseller.html">2 Floors</a>
+                                <a href="bestseller.html">3 Floors</a>
+                                <a href="bestseller.html">4+ Floors</a>
+
+                            </div>
+                            <div class="mega-thumb">
+                                <img src="src/images/placeholderImg2.jpg" alt="Swedish Countryside" />
+                                <span class="thumb-label">Swedish Countryside</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle">By Style <span class="material-symbols-rounded"
+                            style="font-size:18px">expand_more</span></a>
+                    <div class="dropdown-panel simple-menu" role="menu">
+                        <a href="bestseller.html">Modern House Plans</a>
+                        <a href="bestseller.html">Contemporary House Plans</a>
+                        <a href="bestseller.html">Bungalow House Plans</a>
+                        <a href="bestseller.html">Luxury House Plans</a>
+                        <a href="bestseller.html">Rustic House Plans</a>
+                        <a href="bestseller.html">Country House Plans</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle">By Budget <span class="material-symbols-rounded"
+                            style="font-size:18px">expand_more</span></a>
+                    <div class="dropdown-panel simple-menu" role="menu">
+                        <a href="bestseller.html">Under $100 Plans</a>
+                        <a href="bestseller.html">$100 to $300 Plans</a>
+                        <a href="bestseller.html">$300 to $500 Plans</a>
+                        <a href="bestseller.html">$500 to $700 Plans</a>
+                        <a href="bestseller.html">$700+ Plans</a>
+                    </div>
+                </div>
+                <a href="#">Custom Plan</a>
+                <a class="dropdown" href="#">Learn</a>
+            </nav>
+
+            <div class="actions" aria-label="Utilities">
+                <a class="icon-btn" href="#" title="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 21l-4.2-4.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                    </svg>
+                </a>
+                <a class="icon-btn" href="#" title="Favorites">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 21s-7-4.4-7-10a4.1 4.1 0 0 1 7-2.8A4.1 4.1 0 0 1 19 11c0 5.6-7 10-7 10Z"
+                            stroke="currentColor" stroke-width="2" fill="none" />
+                    </svg>
+                </a>
+                <a class="icon-btn" href="#" title="Compare">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 20V10M18 20V4M10 20V14M14 20V7" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                </a>
+                <a class="icon-btn" href="#" title="Account">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2" />
+                        <path d="M4 20a8 8 0 0 1 16 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                </a>
+                <a class="icon-btn" href="#" title="Cart">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <circle cx="9" cy="20" r="1.8" stroke="currentColor" stroke-width="2" />
+                        <circle cx="17" cy="20" r="1.8" stroke="currentColor" stroke-width="2" />
+                        <path d="M3 4h2l2.4 10.5A2 2 0 0 0 9.3 16h6.9a2 2 0 0 0 1.9-1.5L20 8H6" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <main class="hi-wrap">
+        <!-- Top card: gallery + info -->
+        <section class="hi-card">
+            <!-- Gallery -->
+            <div class="hi-gallery">
+                <div class="hi-thumbs" id="thumbs">
+                    <button class="hi-thumb active" data-src="src/images/placeholderImg1.jpg"><img
+                            src="src/images/placeholderImg1.jpg" alt="Thumb 1"></button>
+                    <button class="hi-thumb" data-src="src/images/placeholderImg2.jpg"><img
+                            src="src/images/placeholderImg2.jpg" alt="Thumb 2"></button>
+                    <button class="hi-thumb" data-src="src/images/placeholderImg1.jpg"><img
+                            src="src/images/placeholderImg1.jpg" alt="Thumb 3"></button>
+                    <button class="hi-thumb" data-src="src/images/placeholderImg2.jpg"><img
+                            src="src/images/placeholderImg2.jpg" alt="Thumb 4"></button>
+                </div>
+                <div class="hi-cardIC">
+                    <div class="hi-main">
+                        <img id="mainImage" src="src/images/placeholderImg1.jpg" alt="House main image">
+                    </div>
+                    <!-- Specs directly under main image -->
+                    <div class="hi-specs below">
+                        <div class="hi-spec"><span class="material-symbols-rounded">roofing</span>
+                            <div>2 Floors</div>
+                        </div>
+                        <div class="hi-spec"><span class="material-symbols-rounded">bed</span>
+                            <div>4 Bedrooms</div>
+                        </div>
+                        <div class="hi-spec"><span class="material-symbols-rounded">bathtub</span>
+                            <div>4 Bathrooms</div>
+                        </div>
+                        <div class="hi-spec"><span class="material-symbols-rounded">square_foot</span>
+                            <div>300 sqm</div>
+                        </div>
+                        <div class="hi-spec"><span class="material-symbols-rounded">height</span>
+                            <div>15 m length</div>
+                        </div>
+                        <div class="hi-spec"><span class="material-symbols-rounded">straighten</span>
+                            <div>17 m width</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hi-info">
+                    <h1>Modern 4 Bedroom Double Storey House</h1>
+
+                    <div class="hi-stars" aria-label="4 out of 5">
+                        <span class="material-symbols-rounded filled">star</span>
+                        <span class="material-symbols-rounded filled">star</span>
+                        <span class="material-symbols-rounded filled">star</span>
+                        <span class="material-symbols-rounded filled">star</span>
+                        <span class="material-symbols-rounded">star</span>
+                    </div>
+
+                    <span class="hi-pill">Best Seller</span>
+
+                    <div class="hi-box">
+                        <h4>File Type</h4>
+                        <ul class="opt-list">
+                            <li><input type="radio" name="filetype" id="ft1" checked><label for="ft1">CAD + PDF</label>
+                            </li>
+                            <li><input type="radio" name="filetype" id="ft2"><label for="ft2">PDF</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="hi-box">
+                        <h4>Drawing Sets</h4>
+                        <ul class="opt-list">
+                            <li><input type="checkbox" id="ds1" checked><label for="ds1">Architectural Drawings</label>
+                            </li>
+                            <li><input type="checkbox" id="ds2" checked><label for="ds2">Structural Drawings</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="hi-perks opt-list">
+                        <div class="hi-perk"><span class="material-symbols-rounded">download</span> Instant digital
+                            delivery</div>
+                        <div class="hi-perk"><span class="material-symbols-rounded">verified</span> 100% Money Guarantee
+                        </div>
+                        <div class="hi-perk"><span class="material-symbols-rounded">payments</span> Multiple payment
+                            options</div>
+                    </div>
+
+                    <div class="hi-buybar">
+                        <button class="hi-buybtn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info -->
+
+        </section>
+        <!-- TESTIMONIALS SECTION -->
+        <section class="testimonials" aria-label="Customer testimonials">
+            <div class="testimonials-inner">
+                <div class="stars" aria-hidden="true">★ ★ ★ ★ ★</div>
+
+                <div class="testimonials-slider" role="region" aria-roledescription="carousel"
+                    aria-label="Testimonials">
+                    <div class="testimonial-slide active" aria-roledescription="slide" aria-label="1 of 5">
+                        <blockquote class="testimonial-quote">Very efficient, timely and money well spent. I loved the
+                            house
+                            plan and I received it immediately upon making payment. Thank you for your wonderful
+                            services. I
+                            recommend anyone buy from here without any reservations.</blockquote>
+                        <div class="testimonial-author">Ekong Richard</div>
+                    </div>
+                    <div class="testimonial-slide" aria-roledescription="slide" aria-label="2 of 5">
+                        <blockquote class="testimonial-quote">Smooth experience from browsing to checkout. The drawings
+                            were
+                            clear and my contractor was impressed with the level of detail.</blockquote>
+                        <div class="testimonial-author">Aisha Mwende</div>
+                    </div>
+                    <div class="testimonial-slide" aria-roledescription="slide" aria-label="3 of 5">
+                        <blockquote class="testimonial-quote">Customer support was fantastic and helped me tweak the
+                            plan to
+                            fit our plot perfectly. Highly recommended.</blockquote>
+                        <div class="testimonial-author">Peter Ochieng</div>
+                    </div>
+                    <div class="testimonial-slide" aria-roledescription="slide" aria-label="4 of 5">
+                        <blockquote class="testimonial-quote">Great value for money. I received my files instantly and
+                            started my approvals the same day.</blockquote>
+                        <div class="testimonial-author">Grace Namatovu</div>
+                    </div>
+                    <div class="testimonial-slide" aria-roledescription="slide" aria-label="5 of 5">
+                        <blockquote class="testimonial-quote">Professional, reliable and fast. The plan matched exactly
+                            what
+                            we had in mind and saved us weeks.</blockquote>
+                        <div class="testimonial-author">Brian K.</div>
+                    </div>
+                </div>
+
+                <div class="testimonial-controls">
+                    <button class="t-nav t-prev" aria-label="Previous testimonial">
+                        <span class="material-symbols-rounded">chevron_left</span>
+                    </button>
+                    <div class="t-dots" role="tablist" aria-label="Select testimonial">
+                        <button class="t-dot active" aria-label="Go to testimonial 1" role="tab"></button>
+                        <button class="t-dot" aria-label="Go to testimonial 2" role="tab"></button>
+                        <button class="t-dot" aria-label="Go to testimonial 3" role="tab"></button>
+                        <button class="t-dot" aria-label="Go to testimonial 4" role="tab"></button>
+                        <button class="t-dot" aria-label="Go to testimonial 5" role="tab"></button>
+                    </div>
+                    <button class="t-nav t-next" aria-label="Next testimonial">
+                        <span class="material-symbols-rounded">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Included sets -->
+
+
+
+        <!-- You may also like -->
+        <h2 class="ym-title">You may also like</h2>
+        <section class="hi-rel">
+            <div class="hi-rel-slider" tabindex="0" aria-roledescription="carousel" aria-label="You may also like">
+                <article class="hi-rel-card">
+                    <a class="hi-rel-link" href="houseInfo.html"><img src="src/images/placeholderImg1.jpg" alt=""></a>
+                    <div class="hi-rel-body">
+                        <h4 class="hi-rel-title"><a href="houseInfo.html">2 Bedroom House Plan - ID 12102</a></h4>
+                        <div class="rel-row">
+                            <p class="rel-price">From $54.00</p>
+                        </div>
+                        <div class="rel-specs-3x2">
+                            <div class="rel-col">
+                                <div class="rel-bottom"><span class="material-symbols-rounded">roofing</span><span>1
+                                        Floor</span></div>
+                                <div class="rel-bottom"><span class="material-symbols-rounded">height</span><span>13
+                                        m</span></div>
+                            </div>
+                            <div class="rel-col">
+                                <div class="rel-bottom"><span class="material-symbols-rounded">bed</span><span>2
+                                        Bedrooms</span></div>
+                                <div class="rel-bottom"><span class="material-symbols-rounded">straighten</span><span>6
+                                        m</span></div>
+                            </div>
+                            <div class="rel-col">
+                                <div class="rel-bottom"><span class="material-symbols-rounded">bathtub</span><span>1
+                                        Bathrooms</span></div>
+                                <div class="rel-bottom"><span
+                                        class="material-symbols-rounded">square_foot</span><span>80 Area</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="hi-rel-card">
+                    <a class="hi-rel-link" href="houseInfo.html"><img src="src/images/placeholderImg2.jpg" alt=""></a>
+                    <div class="hi-rel-body">
+                        <h4 class="hi-rel-title"><a href="houseInfo.html">2 Bedroom House Plan - ID 12103</a></h4>
+                        <div class="rel-row">
+                            <p class="rel-price">From $52.20</p>
+                        </div>
+                        <div class="rel-specs-3x2">
+                            <div class="rel-col">
+                                <div class="rel-bottom"><span class="material-symbols-rounded">roofing</span><span>1
+                                        Floor</span></div>
+                                <div class="rel-bottom"><span class="material-symbols-rounded">height</span><span>9
+                                        m</span></div>
+                            </div>
+                            <div class="rel-col">
+                                <div class="rel-bottom"><span class="material-symbols-rounded">bed</span><span>2
+                                        Bedrooms</span></div>
+                                <div class="rel-bottom"><span class="material-symbols-rounded">straighten</span><span>8
+                                        m</span></div>
+                            </div>
+                            <div class="rel-col">
+                                <div class="rel-bottom"><span class="material-symbols-rounded">bathtub</span><span>1
+                                        Bathrooms</span></div>
+                                <div class="rel-bottom"><span
+                                        class="material-symbols-rounded">square_foot</span><span>67 Area</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="hi-rel-card">
+                    <a class="hi-rel-link" href="houseInfo.html"><img src="src/images/placeholderImg1.jpg" alt=""></a>
+                    <div class="hi-rel-body">
+                        <h4 class="hi-rel-title"><a href="houseInfo.html">2 Bedroom House Plan - ID 12101</a></h4>
+                        <div class="rel-row">
+                            <p class="rel-price">From $60.30</p>
+                        </div>
+                        <div class="rel-specs-3x2">
+                            <div class="rel-col">
+                                <div class="rel-bottom"><span class="material-symbols-rounded">roofing</span><span>1
+                                        Floor</span></div>
+                                <div class="rel-bottom"><span class="material-symbols-rounded">height</span><span>10
+                                        m</span></div>
+                            </div>
+                            <div class="rel-col">
+                                <div class="rel-bottom"><span class="material-symbols-rounded">bed</span><span>2
+                                        Bedrooms</span></div>
+                                <div class="rel-bottom"><span class="material-symbols-rounded">straighten</span><span>8
+                                        m</span></div>
+                            </div>
+                            <div class="rel-col">
+                                <div class="rel-bottom"><span class="material-symbols-rounded">bathtub</span><span>1
+                                        Bathrooms</span></div>
+                                <div class="rel-bottom"><span
+                                        class="material-symbols-rounded">square_foot</span><span>87 Area</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="hi-rel-card">
+                    <a class="hi-rel-link" href="houseInfo.html"><img src="src/images/placeholderImg2.jpg" alt=""></a>
+                    <div class="hi-rel-body">
+                        <h4 class="hi-rel-title"><a href="houseInfo.html">Simple 2 bedroom house plan - ID 12105</a></h4>
+                        <div class="rel-row">
+                            <p class="rel-price">From $81.90</p>
+                        </div>
+                        <div class="rel-specs-3x2">
+                            <div class="rel-col">
+                                <div class="rel-bottom"><span class="material-symbols-rounded">roofing</span><span>1
+                                        Floor</span></div>
+                                <div class="rel-bottom"><span class="material-symbols-rounded">height</span><span>11
+                                        m</span></div>
+                            </div>
+                            <div class="rel-col">
+                                <div class="rel-bottom"><span class="material-symbols-rounded">bed</span><span>2
+                                        Bedrooms</span></div>
+                                <div class="rel-bottom"><span class="material-symbols-rounded">straighten</span><span>9
+                                        m</span></div>
+                            </div>
+                            <div class="rel-col">
+                                <div class="rel-bottom"><span class="material-symbols-rounded">bathtub</span><span>1
+                                        Bathrooms</span></div>
+                                <div class="rel-bottom"><span
+                                        class="material-symbols-rounded">square_foot</span><span>—</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="hi-rel-card">
+                    <a class="hi-rel-link" href="houseInfo.html"><img src="src/images/placeholderImg1.jpg" alt=""></a>
+                    <div class="hi-rel-body">
+                        <h4 class="hi-rel-title"><a href="houseInfo.html">2 Bedroom House Plan - ID 12106</a></h4>
+                        <div class="rel-row">
+                            <p class="rel-price">From $58.00</p>
+                        </div>
+                        <div class="rel-specs-3x2">
+                            <div class="rel-col">
+                                <div class="rel-bottom"><span class="material-symbols-rounded">roofing</span><span>1
+                                        Floor</span></div>
+                                <div class="rel-bottom"><span class="material-symbols-rounded">height</span><span>10
+                                        m</span></div>
+                            </div>
+                            <div class="rel-col">
+                                <div class="rel-bottom"><span class="material-symbols-rounded">bed</span><span>2
+                                        Bedrooms</span></div>
+                                <div class="rel-bottom"><span class="material-symbols-rounded">straighten</span><span>8
+                                        m</span></div>
+                            </div>
+                            <div class="rel-col">
+                                <div class="rel-bottom"><span class="material-symbols-rounded">bathtub</span><span>1
+                                        Bathrooms</span></div>
+                                <div class="rel-bottom"><span
+                                        class="material-symbols-rounded">square_foot</span><span>—</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="hi-rel-foot" aria-hidden="false">
+                <hr class="hi-rel-hr">
+                <div class="hi-rel-controls">
+                    <button class="hi-rel-nav hi-rel-prev" aria-label="Previous"><span
+                            class="material-symbols-rounded">chevron_left</span></button>
+                    <button class="hi-rel-nav hi-rel-next" aria-label="Next"><span
+                            class="material-symbols-rounded">chevron_right</span></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <h2 class="hi-faq-title">FAQ</h2>
+        <section class="hi-faq">
+            <div>
+                <p class="hi-faq-meta">Our customer support is available Monday to Friday: 8am–6:30pm.</p>
+                <p class="hi-faq-meta">Average answer time: 24h</p>
+            </div>
+            <div class="hi-qa">
+                <details>
+                    <summary>Can I view more pictures of this house plan?</summary>
+                    <div class="hi-answer">Many plans include extra images or renders. If you need more visuals, contact
+                        support and we’ll share any available media.</div>
+                </details>
+                <details>
+                    <summary>How long will it take to get my orders?</summary>
+                    <div class="hi-answer">Digital files are delivered instantly after payment. Customizations or
+                        printed sets can take additional processing time.</div>
+                </details>
+                <details>
+                    <summary>What are PDF and DWG formats?</summary>
+                    <div class="hi-answer">PDFs are ready-to-view print files. DWG is an editable CAD format used by
+                        architects and engineers.</div>
+                </details>
+                <details>
+                    <summary>Do you also build the houses?</summary>
+                    <div class="hi-answer">We provide architectural drawings. For construction, work with a local
+                        contractor/engineer who can use our drawings.</div>
+                </details>
+                <details>
+                    <summary>Are your plans ready to submit to my local authorities for a building permit?</summary>
+                    <div class="hi-answer">Our drawings are professional-grade. Your local authority may require
+                        site-specific adjustments per local codes.</div>
+                </details>
+                <details>
+                    <summary>How do I know if the plan I buy will fit on my plot?</summary>
+                    <div class="hi-answer">Check the plan’s length, width and setbacks against your plot size and local
+                        regulations. We can advise if you share your plot details.</div>
+                </details>
+                <details>
+                    <summary>What if the plan I want doesn’t have structural drawings?</summary>
+                    <div class="hi-answer">Some plans include structural sets. If not, we can prepare them or your local
+                        engineer can produce them using our architectural set.</div>
+                </details>
+                <details>
+                    <summary>Does the house plan come with BOQs?</summary>
+                    <div class="hi-answer">BOQs (Bill of Quantities) are not standard on all plans. They can be added on
+                        request.</div>
+                </details>
+                <details>
+                    <summary>Can I modify the house plan?</summary>
+                    <div class="hi-answer">Yes. We offer modifications such as changing room sizes, layouts or
+                        elevations. Get in touch with your requirements.</div>
+                </details>
+                <details>
+                    <summary>When should I expect my order once I make the payment?</summary>
+                    <div class="hi-answer">You receive download access immediately for digital files. An email
+                        confirmation is also sent with the download link.</div>
+                </details>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER (same as index.html) -->
+    <footer class="site-footer" aria-label="Site footer">
+        <div class="footer-top">
+            <div class="footer-newsletter">
+                <h3 class="footer-newsletter-title">From Dream to Home</h3>
+                <p class="footer-newsletter-sub">Get fresh house plan ideas, tips and exclusive offers.</p>
+                <form class="newsletter-form" action="#" method="post" onsubmit="return false">
+                    <label class="sr-only" for="nl-email">Email</label>
+                    <input id="nl-email" type="email" placeholder="Enter your email" required>
+                    <button type="submit"><span class="material-symbols-rounded">send</span>Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a class="brand footer-brand" href="#">
+                    <img src="src/images/logo.png" alt="Monisa logo" width="120" height="50">
+                </a>
+                <p class="footer-text">We help you discover, customize and purchase architectural plans that fit your
+                    lifestyle and budget.</p>
+                <div class="footer-social" aria-label="Social links">
+                    <a href="#" aria-label="Facebook"><span class="material-symbols-rounded">thumb_up</span></a>
+                    <a href="#" aria-label="Instagram"><span class="material-symbols-rounded">photo_camera</span></a>
+                    <a href="#" aria-label="Twitter"><span class="material-symbols-rounded">alternate_email</span></a>
+                    <a href="#" aria-label="YouTube"><span class="material-symbols-rounded">play_circle</span></a>
+                </div>
+            </div>
+
+            <nav class="footer-col" aria-label="Shop">
+                <h4 class="footer-title">Shop</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Best Sellers</a></li>
+                    <li><a href="#">By Size</a></li>
+                    <li><a href="#">By Style</a></li>
+                    <li><a href="#">By Budget</a></li>
+                    <li><a href="#">Custom Plan</a></li>
+                </ul>
+            </nav>
+
+            <nav class="footer-col" aria-label="Help">
+                <h4 class="footer-title">Help</h4>
+                <ul class="footer-links">
+                    <li><a href="#">How it works</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Licensing</a></li>
+                    <li><a href="#">Refund policy</a></li>
+                    <li><a href="#">Contact support</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer-col" aria-label="Contact">
+                <h4 class="footer-title">Contact</h4>
+                <ul class="footer-contact">
+                    <li><span class="material-symbols-rounded">mail</span> support@monisa.example</li>
+                    <li><span class="material-symbols-rounded">call</span> +1 (555) 123-4567</li>
+                    <li><span class="material-symbols-rounded">schedule</span> Mon–Fri, 9am–6pm</li>
+                    <li><span class="material-symbols-rounded">pin_drop</span> Silicon Valley, CA</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-copy">© <span id="year"></span> Monisa. All rights reserved.</div>
+            <div class="footer-legal">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update year
+        (function () { var y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear(); })();
+
+        // Gallery swap
+        (function () {
+            const main = document.getElementById('mainImage');
+            const thumbs = document.querySelectorAll('.hi-thumb');
+            thumbs.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    thumbs.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const src = btn.getAttribute('data-src');
+                    if (src && main) main.src = src;
+                });
+            });
+        })();
+    </script>
+    <script src="index.js"></script>
+</body>
+
+</html>

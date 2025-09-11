@@ -1,6 +1,29 @@
+/* DIN Next embedding */
+@font-face {
+    font-family: "DIN Next";
+    src:
+      local("DIN Next"),
+      local("DINNext LT Pro"),
+      url("src/fonts/DINNext/DINNext-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "DIN Next";
+    src:
+      local("DIN Next Bold"),
+      local("DINNext LT Pro Bold"),
+      local("DINNext LT Pro"),
+      url("src/fonts/DINNext/DINNext-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --bg: #f0f0f0;
-    --text: #101113;
+    --text: #1A1A1A;
     --muted: #6b7280;
     --brand: #1e90ff;
     --accent: #00a884;
@@ -21,9 +44,12 @@ body {
     height: 100%;
 }
 
+.hi-rel {
+    margin-bottom: 5%;
+}
 body {
     margin: 0;
-    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    font-family: DIN Next, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
         sans-serif;
     color: var(--text);
     background: var(--bg);
@@ -34,8 +60,8 @@ body {
     position: sticky;
     top: 0;
     z-index: 10000;
-    background: var(--white);
-    border-bottom: 1px solid #eef0f3;
+    background: var(--bg);
+    /* border-bottom: 1px solid #eef0f3; */
     padding: 0.5% 5%;
 }
 
@@ -94,6 +120,23 @@ body {
     font-weight: bold;
 }
 
+.hi-info {
+    width: 100%;
+}
+.hi-cardIC {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 16px;
+    flex: 0 1 auto;
+    /* don't consume all space so space-between works */
+    font-size: 16px;
+    white-space: nowrap;
+    min-width: 0;
+    /* allow flexbox to shrink without wrapping */
+    /* font-weight: bold; */
+    /* padding: 3%; */
+}
 .menu a {
     color: var(--text);
     text-decoration: none;
@@ -335,7 +378,7 @@ body {
     align-items: center;
     gap: 4px;
     text-decoration: none;
-    color: var(--text);
+    color: #111827; /* darker link */
     padding: 8px 6px;
     font-weight: 700;
 }
@@ -350,7 +393,8 @@ body {
 }
 
 .dropdown-panel {
-    display: none;
+    /* Always in the DOM for smooth transitions */
+    display: block;
     position: absolute;
     top: 100%;
     left: 0;
@@ -360,7 +404,11 @@ body {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     padding: 22px 28px;
     z-index: 99999 !important;
-    animation: dropdownFade .15s ease-out forwards;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity .16s ease, transform .16s ease, visibility 0s linear .16s;
+    pointer-events: none;
 }
 
 @keyframes dropdownFade {
@@ -375,20 +423,27 @@ body {
     }
 }
 
-.nav-item:hover>.dropdown-panel,
-.dropdown-toggle:hover+.dropdown-panel,
-.dropdown-panel:hover {
-    display: block;
+/* Open state controlled by JS (and also when directly hovered) */
+.nav-item.open > .dropdown-panel,
+.nav-item:focus-within > .dropdown-panel,
+.nav-item:hover > .dropdown-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity .18s ease, transform .18s ease, visibility 0s;
+    pointer-events: auto;
 }
 
 /* Simple single-column menu */
 .simple-menu a {
     display: block;
-    padding: 6px 0;
+    padding: 8px 0; /* match mega menu item spacing */
     white-space: nowrap;
-    color: #374151;
+    color: var(--text); /* #1A1A1A */
     text-decoration: none;
     font-weight: 500;
+    font-size: 16px;
+    line-height: 1.6;
 }
 
 .simple-menu a:hover {
@@ -409,11 +464,11 @@ body {
 }
 
 .mega-inner {
-    display: flex;
-    align-items: stretch;
-    justify-content: space-around;
-    gap: 40px;
-    flex-wrap: nowrap;
+    /* 3 equal text columns + fixed image column (440px) */
+    display: grid;
+    grid-template-columns: repeat(3, minmax(160px, 1fr)) 440px;
+    align-items: start;
+    gap: 40px; /* a bit more breathing space between columns */
 }
 
 .mega-col {
@@ -427,29 +482,30 @@ body {
 }
 
 .mega-heading {
-    font-size: 20px;
+    font-size: 18px; /* smaller like reference */
     font-weight: 800;
-    margin: 0 0 12px;
+    margin: 0 0 10px;
     color: #111827;
 }
 
 .mega-col a {
     display: block;
-    padding: 10px 0; /* more vertical spacing between items */
-    line-height: 1.7;
-    color: #374151;
+    padding: 6px 0; /* tighter spacing like reference */
+    line-height: 1.6;
+    color: #374151; /* muted dark gray for items */
     text-decoration: none;
+    font-size: 14px; /* slightly smaller */
+    font-weight: 500;
 }
 
 .mega-col a:hover {
-    color: var(--brand, #6d28d9);
+    color: #111827; /* subtle dark on hover */
 }
 
 .mega-thumb {
     margin-left: auto;
     position: relative;
-    width: 260px;
-    flex: 0 0 260px;
+    width: auto; /* will be sized by grid column */
 }
 
 .mega-thumb img {
@@ -458,16 +514,37 @@ body {
     object-fit: cover;
 }
 
+/* Card link styles: image/title links without decoration until hover */
+.card-link,
+.plans-link,
+.hi-rel-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.bs-card-title a,
+.hi-rel-title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.bs-card-title a:hover,
+.hi-rel-title a:hover {
+    text-decoration: underline;
+}
+
 /* Make the preview image area occupy half of the width and be a bit taller */
 .mega-menu .mega-thumb {
-    flex: 0 0 50%;
-    max-width: 50%;
+    width: 440px;
+    max-width: 440px;
 }
 
 .mega-menu .mega-thumb img {
-    height: 360px; /* a little bigger */
-    max-height: 380px;
+    width: 440px;
+    height: 293px; /* rendered size requested */
     border-radius: 10px;
+    object-fit: cover;
 }
 
 .thumb-label {

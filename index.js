@@ -37,13 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Add mouse wheel scrolling
-    plansSlider.addEventListener('wheel', (e) => {
-      if (e.deltaY !== 0) {
-        e.preventDefault();
-        plansSlider.scrollBy({ left: e.deltaY, behavior: 'smooth' });
-      }
-    }, { passive: false });
+    // Intentionally no mouse wheel scroll to avoid accidental horizontal movement
 
     // Add navigation button functionality
     if (prevButton && nextButton) {
@@ -55,6 +49,85 @@ document.addEventListener('DOMContentLoaded', () => {
         plansSlider.scrollBy({ left: 550, behavior: 'smooth' });
       });
     }
+  }
+});
+
+// "You may also like" horizontal slider on houseInfo.html
+document.addEventListener('DOMContentLoaded', () => {
+  const relSlider = document.querySelector('.hi-rel-slider');
+  const relPrev = document.querySelector('.hi-rel-prev');
+  const relNext = document.querySelector('.hi-rel-next');
+
+  if (!relSlider) return;
+
+  const getStep = () => {
+    const card = relSlider.querySelector('.hi-rel-card');
+    if (!card) return 320;
+    const style = getComputedStyle(relSlider);
+    const gap = parseInt(style.columnGap || style.gap || '16', 10) || 16;
+    return Math.ceil(card.getBoundingClientRect().width + gap);
+  };
+
+  if (relPrev) relPrev.addEventListener('click', () => {
+    relSlider.scrollBy({ left: -getStep(), behavior: 'smooth' });
+  });
+  if (relNext) relNext.addEventListener('click', () => {
+    relSlider.scrollBy({ left: getStep(), behavior: 'smooth' });
+  });
+
+  // Keyboard support when slider is focused
+  relSlider.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') {
+      relSlider.scrollBy({ left: getStep(), behavior: 'smooth' });
+    } else if (e.key === 'ArrowLeft') {
+      relSlider.scrollBy({ left: -getStep(), behavior: 'smooth' });
+    }
+  });
+  // Intentionally disable mouse wheel horizontal scroll for UX consistency
+});
+
+// Smooth dropdowns: keep open while moving between menu items; close after mouse leaves the whole nav
+document.addEventListener('DOMContentLoaded', () => {
+  const NAV_CLOSE_DELAY = 500; // ms (you can tune this)
+  const nav = document.querySelector('.nav');
+  const items = Array.from(document.querySelectorAll('.nav-item'));
+  let closeTimer;
+
+  function openItem(item) {
+    clearTimeout(closeTimer);
+    // Open the hovered item, close others
+    items.forEach(i => i.classList.toggle('open', i === item));
+  }
+
+  function scheduleCloseAll() {
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(() => {
+      items.forEach(i => i.classList.remove('open'));
+    }, NAV_CLOSE_DELAY);
+  }
+
+  // Open respective panel on hover/focus, but do not close when moving between items
+  items.forEach(item => {
+    item.addEventListener('mouseenter', () => openItem(item));
+    item.addEventListener('focusin', () => openItem(item));
+
+    // Keep open while hovering the dropdown panel itself
+    const panel = item.querySelector('.dropdown-panel');
+    if (panel) {
+      panel.addEventListener('mouseenter', () => openItem(item));
+      panel.addEventListener('mouseleave', scheduleCloseAll);
+    }
+  });
+
+  if (nav) {
+    // Cancel closing if pointer returns quickly
+    nav.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+    // Close only after leaving the entire nav area (not when moving to another item)
+    nav.addEventListener('mouseleave', scheduleCloseAll);
+    // Keyboard: close when focus completely leaves the nav
+    nav.addEventListener('focusout', (e) => {
+      if (!nav.contains(e.relatedTarget)) scheduleCloseAll();
+    });
   }
 });
 
