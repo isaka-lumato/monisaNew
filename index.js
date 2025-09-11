@@ -202,3 +202,56 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// Dynamic hero title for Best Sellers page
+document.addEventListener('DOMContentLoaded', () => {
+  // 1) When user clicks any link that goes to bestseller.html, store the link's text as desired title
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('a');
+    if (!a) return;
+    try {
+      const url = new URL(a.getAttribute('href'), window.location.href);
+      if (url.pathname.endsWith('bestseller.html')) {
+        const raw = a.getAttribute('data-title') || a.textContent || '';
+        const title = raw.replace(/\s+/g, ' ').trim();
+        if (title) sessionStorage.setItem('bsTitle', title);
+      }
+    } catch (_) { /* ignore malformed href */ }
+  }, true);
+
+  // 2) On bestseller.html, set the hero title from ?title= or sessionStorage, with a sensible fallback
+  const heroTitleEl = document.querySelector('.bs-hero-title');
+  if (heroTitleEl) {
+    const params = new URLSearchParams(window.location.search);
+    const fromParam = (params.get('title') || '').trim();
+    const fromStorage = (sessionStorage.getItem('bsTitle') || '').trim();
+    heroTitleEl.textContent = fromParam || fromStorage || 'Best Sellers';
+
+    // 3) Update the title as filters are (de)selected
+    const sidebar = document.querySelector('.bs-sidebar');
+    if (sidebar) {
+      const updateFromFilters = () => {
+        const checked = Array.from(sidebar.querySelectorAll('.filter-list input[type="checkbox"]:checked'));
+        if (checked.length) {
+          const labels = checked.map(cb => {
+            const label = cb.closest('label');
+            if (!label) return '';
+            // Remove counts like (32) if present
+            return label.innerText.replace(/\(\s*\d+\s*\)/g, '').replace(/\s+/g, ' ').trim();
+          }).filter(Boolean);
+          const combined = labels.join(' • ');
+          if (combined) {
+            heroTitleEl.textContent = combined;
+            sessionStorage.setItem('bsTitle', combined);
+          }
+        } else {
+          // No filters selected – restore previous stored title or default
+          const fallback = fromParam || fromStorage || 'Best Sellers';
+          heroTitleEl.textContent = fallback;
+          sessionStorage.setItem('bsTitle', fallback);
+        }
+      };
+      sidebar.addEventListener('change', updateFromFilters);
+    }
+  }
+});
