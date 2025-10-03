@@ -255,3 +255,167 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+// Before/After Comparison Slider
+document.addEventListener('DOMContentLoaded', () => {
+  const slider = document.getElementById('comparisonSlider');
+  const handle = document.getElementById('comparisonHandle');
+  const afterImage = document.querySelector('.comparison-after');
+  const optionButtons = document.querySelectorAll('.comparison-option');
+  const beforeImg = document.querySelector('.comparison-before img');
+  const afterImg = document.querySelector('.comparison-after img');
+  
+  if (!slider || !handle || !afterImage) return;
+  
+  let isDragging = false;
+  let sliderWidth = slider.offsetWidth;
+  
+  // Update slider width on window resize
+  window.addEventListener('resize', () => {
+    sliderWidth = slider.offsetWidth;
+    // Update after image width for responsive
+    const currentPosition = parseFloat(handle.style.left || '50%');
+    afterImg.style.minWidth = sliderWidth + 'px';
+    afterImg.style.maxWidth = sliderWidth + 'px';
+  });
+  
+  // Initialize after image width
+  afterImg.style.minWidth = sliderWidth + 'px';
+  afterImg.style.maxWidth = sliderWidth + 'px';
+  
+  function updateSliderPosition(x) {
+    const rect = slider.getBoundingClientRect();
+    let position = ((x - rect.left) / sliderWidth) * 100;
+    
+    // Clamp position between 0 and 100
+    position = Math.max(0, Math.min(100, position));
+    
+    // Update handle and after image positions
+    handle.style.left = position + '%';
+    afterImage.style.width = position + '%';
+    
+    // Get the labels
+    const beforeLabel = document.querySelector('.comparison-label-before');
+    const afterLabel = document.querySelector('.comparison-label-after');
+    
+    // Gradual fade effect for labels starting from center (50%)
+    if (beforeLabel) {
+      // For "Architectural Plan" label - starts fading from 50% to 0%
+      let beforeOpacity = 1;
+      if (position <= 50) {
+        // Gradually fade from 50% to 0%
+        // At 50% = fully visible (opacity 1), at 0% = invisible (opacity 0)
+        beforeOpacity = position / 50;
+      }
+      beforeLabel.style.opacity = beforeOpacity;
+      
+      // Add slight scale and blur effect as it fades
+      const beforeScale = 0.85 + (beforeOpacity * 0.15);
+      const beforeBlur = (1 - beforeOpacity) * 3;
+      beforeLabel.style.transform = `scale(${beforeScale})`;
+      beforeLabel.style.filter = `blur(${beforeBlur}px)`;
+      
+      // Disable pointer events when nearly invisible
+      beforeLabel.style.pointerEvents = beforeOpacity < 0.1 ? 'none' : 'auto';
+    }
+    
+    if (afterLabel) {
+      // For "Completed Home" label - starts fading from 50% to 100%
+      let afterOpacity = 1;
+      if (position >= 50) {
+        // Gradually fade from 50% to 100%
+        // At 50% = fully visible (opacity 1), at 100% = invisible (opacity 0)
+        afterOpacity = (100 - position) / 50;
+      }
+      afterLabel.style.opacity = afterOpacity;
+      
+      // Add slight scale and blur effect as it fades
+      const afterScale = 0.85 + (afterOpacity * 0.15);
+      const afterBlur = (1 - afterOpacity) * 3;
+      afterLabel.style.transform = `scale(${afterScale})`;
+      afterLabel.style.filter = `blur(${afterBlur}px)`;
+      
+      // Disable pointer events when nearly invisible
+      afterLabel.style.pointerEvents = afterOpacity < 0.1 ? 'none' : 'auto';
+    }
+  }
+  
+  // Mouse events
+  handle.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    e.preventDefault();
+  });
+  
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    updateSliderPosition(e.clientX);
+  });
+  
+  document.addEventListener('mouseup', () => {
+    isDragging = false;
+  });
+  
+  // Touch events for mobile
+  handle.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    e.preventDefault();
+  });
+  
+  document.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const touch = e.touches[0];
+    updateSliderPosition(touch.clientX);
+  });
+  
+  document.addEventListener('touchend', () => {
+    isDragging = false;
+  });
+  
+  // Click on slider to move handle
+  slider.addEventListener('click', (e) => {
+    if (e.target === handle || handle.contains(e.target)) return;
+    updateSliderPosition(e.clientX);
+  });
+  
+  // Option buttons to switch images
+  optionButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Update active state
+      optionButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      // Change images
+      const beforeSrc = button.dataset.before;
+      const afterSrc = button.dataset.after;
+      
+      if (beforeSrc && afterSrc) {
+        // Add fade transition
+        slider.style.opacity = '0.5';
+        setTimeout(() => {
+          beforeImg.src = beforeSrc;
+          afterImg.src = afterSrc;
+          slider.style.opacity = '1';
+        }, 200);
+      }
+    });
+  });
+  
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!slider.matches(':hover')) return;
+    
+    const currentPosition = parseFloat(handle.style.left || '50');
+    let newPosition = currentPosition;
+    
+    if (e.key === 'ArrowLeft') {
+      newPosition = Math.max(0, currentPosition - 5);
+    } else if (e.key === 'ArrowRight') {
+      newPosition = Math.min(100, currentPosition + 5);
+    } else {
+      return;
+    }
+    
+    handle.style.left = newPosition + '%';
+    afterImage.style.width = newPosition + '%';
+  });
+});

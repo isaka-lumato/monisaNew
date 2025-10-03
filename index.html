@@ -27,7 +27,6 @@
             </a>
 
             <nav class="menu" aria-label="Primary">
-                <a href="#">Shop</a>
                 <a href="bestseller.html">Best Sellers</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="dropdown-toggle">By Size <span class="material-symbols-rounded"
@@ -354,6 +353,53 @@
     </section>
 
 
+    <!-- BEFORE/AFTER COMPARISON SLIDER -->
+    <section class="comparison-section" aria-label="Before and After Comparison">
+        <div class="comparison-container">
+            <h2 class="comparison-title">Transform Your Vision Into Reality</h2>
+            <p class="comparison-subtitle">See how our architectural plans translate into stunning homes</p>
+            
+            <div class="comparison-wrapper">
+                <div class="comparison-slider" id="comparisonSlider">
+                    <!-- Before Image (Left) -->
+                    <div class="comparison-before">
+                        <img src="src/images/placeholderImg1.jpg" alt="Architectural Plan">
+                        <div class="comparison-label comparison-label-before">Architectural Plan</div>
+                    </div>
+                    
+                    <!-- After Image (Right) -->
+                    <div class="comparison-after">
+                        <img src="src/images/placeholderImg2.jpg" alt="Completed Home">
+                    </div>
+                    
+                    <!-- Static label for the right side -->
+                    <div class="comparison-label comparison-label-after">Completed Home</div>
+                    
+                    <!-- Slider Handle -->
+                    <div class="comparison-handle" id="comparisonHandle">
+                        <div class="comparison-line"></div>
+                        <div class="comparison-circle">
+                            <span class="material-symbols-rounded">swap_horiz</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Optional: Multiple comparison sets -->
+                <div class="comparison-options">
+                    <button class="comparison-option active" data-before="src/images/placeholderImg1.jpg" data-after="src/images/placeholderImg2.jpg">
+                        <span>Modern Villa</span>
+                    </button>
+                    <button class="comparison-option" data-before="src/images/placeholderImg2.jpg" data-after="src/images/placeholderImg1.jpg">
+                        <span>Luxury Estate</span>
+                    </button>
+                    <button class="comparison-option" data-before="src/images/placeholderImg1.jpg" data-after="src/images/placeholderImg2.jpg">
+                        <span>Family Bungalow</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Best selling plans Section-->
     <!-- BEST SELLING PLANS SECTION -->
     <section class="best-selling-section" aria-label="Best selling plans">
@@ -551,7 +597,6 @@
             </div>
 
             <nav class="footer-col" aria-label="Shop">
-                <h4 class="footer-title">Shop</h4>
                 <ul class="footer-links">
                     <li><a href="#">Best Sellers</a></li>
                     <li><a href="#">By Size</a></li>
