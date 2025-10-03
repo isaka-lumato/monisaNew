@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Our Services - Monisa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,200..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,200..700,0..1,-50..200" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="favorites.css">
+    
+    <style>
+        /* Services Page Styles */
+        .services-hero {
+            position: relative;
+            background: url('src/images/placeholderImg1.jpg') center/cover no-repeat;
+            padding: 140px 5% 100px;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .services-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 100%);
+            z-index: 1;
+        }
+
+        .services-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .services-hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin: 0 0 20px 0;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .services-hero p {
+            font-size: 20px;
+            max-width: 750px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+
+        .services-hero-stats {
+            display: flex;
+            gap: 60px;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 42px;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .hero-stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .services-intro {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .services-intro h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1f2937;
+            margin: 0 0 20px 0;
+        }
+
+        .services-intro p {
+            font-size: 16px;
+            color: #6b7280;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            line-height: 1.7;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto 100px;
+            padding: 0 5%;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 20px 60px rgba(139, 21, 56, 0.2);
+            transform: translateY(-8px);
+        }
+
+        .service-card-image {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .service-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .service-card:hover .service-card-image img {
+            transform: scale(1.1);
+        }
+
+        .service-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+        }
+
+        .service-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            color: #8B1538;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #8B1538 0%, #A91D47 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(139, 21, 56, 0.4);
+        }
+
+        .service-icon .material-symbols-rounded {
+            font-size: 36px;
+            color: white;
+        }
+
+        .service-card-content {
+            padding: 35px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card h3 {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1f2937;
+            margin: 0 0 16px 0;
+            line-height: 1.3;
+        }
+
+        .service-card p {
+            font-size: 16px;
+            color: #6b7280;
+            line-height: 1.7;
+            margin: 0 0 28px 0;
+            flex: 1;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 32px 0;
+        }
+
+        .service-features li {
+            font-size: 15px;
+            color: #4b5563;
+            padding: 12px 0;
+            display: flex;
+            align-items: start;
+            gap: 12px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .service-features li:last-child {
+            border-bottom: none;
+        }
+
+        .service-features li::before {
+            content: "✓";
+            color: #8B1538;
+            font-weight: 800;
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .service-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #8B1538 0%, #A91D47 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(139, 21, 56, 0.3);
+            width: 100%;
+        }
+
+        .service-cta:hover {
+            background: linear-gradient(135deg, #A91D47 0%, #8B1538 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(139, 21, 56, 0.4);
+        }
+
+        .service-cta .material-symbols-rounded {
+            font-size: 20px;
+        }
+
+        /* Featured Service Section */
+        .featured-service {
+            background: #FFF5F7;
+            padding: 80px 5%;
+            margin: 60px 0;
+        }
+
+        .featured-service-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .featured-service-content h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1f2937;
+            margin: 0 0 20px 0;
+        }
+
+        .featured-service-content p {
+            font-size: 16px;
+            color: #6b7280;
+            line-height: 1.7;
+            margin: 0 0 30px 0;
+        }
+
+        .featured-service-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(139, 21, 56, 0.2);
+        }
+
+        .featured-service-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: start;
+            gap: 12px;
+        }
+
+        .feature-item .material-symbols-rounded {
+            color: #8B1538;
+            font-size: 24px;
+            margin-top: 2px;
+        }
+
+        .feature-item div {
+            flex: 1;
+        }
+
+        .feature-item h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 0 0 4px 0;
+        }
+
+        .feature-item p {
+            font-size: 14px;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        /* CTA Section */
+        .services-cta-section {
+            position: relative;
+            background: url('src/images/placeholderImg2.jpg') center/cover no-repeat;
+            padding: 100px 5%;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .services-cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 21, 56, 0.85) 0%, rgba(107, 15, 42, 0.9) 100%);
+            z-index: 1;
+        }
+
+        .services-cta-section h2,
+        .services-cta-section p,
+        .cta-buttons {
+            position: relative;
+            z-index: 2;
+        }
+
+        .services-cta-section h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin: 0 0 20px 0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .services-cta-section p {
+            font-size: 18px;
+            margin: 0 0 50px 0;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn-primary {
+            padding: 18px 40px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            color: #8B1538;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .cta-btn-secondary {
+            padding: 18px 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-decoration: none;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.95);
+            color: #8B1538;
+            border-color: rgba(255, 255, 255, 0.95);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services-hero {
+                padding: 100px 5% 60px;
+            }
+
+            .services-hero h1 {
+                font-size: 36px;
+            }
+
+            .services-hero p {
+                font-size: 16px;
+            }
+
+            .services-hero-stats {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+
+            .hero-stat-number {
+                font-size: 32px;
+            }
+
+            .services-intro h2,
+            .featured-service-content h2,
+            .services-cta-section h2 {
+                font-size: 28px;
+            }
+
+            .service-card h3 {
+                font-size: 22px;
+            }
+
+            .service-card-image {
+                height: 220px;
+            }
+
+            .featured-service-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Navigation -->
+    <div class="topbar">
+        <div class="nav">
+            <a class="brand" href="index.html">
+                <img src="src\images\logo.png" alt="logo" width="120" height="50">
+            </a>
+
+            <nav class="menu" aria-label="Primary">
+                <a href="index.html">Shop</a>
+                <a href="bestseller.html">Best Sellers</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle">By Size <span class="material-symbols-rounded"
+                            style="font-size:18px">expand_more</span></a>
+                    <div class="dropdown-panel mega-menu" role="menu">
+                        <div class="mega-inner">
+                            <div class="mega-col">
+                                <h4 class="mega-heading">Plans by Area (SQM)</h4>
+                                <a href="bestseller.html">750+ SQM</a>
+                                <a href="bestseller.html">500–750 SQM</a>
+                                <a href="bestseller.html">400–500 SQM</a>
+                                <a href="bestseller.html">300–400 SQM</a>
+                                <a href="bestseller.html">200–300 SQM</a>
+                                <a href="bestseller.html">100–200 SQM</a>
+                                <a href="bestseller.html">Under 100 SQM</a>
+                            </div>
+                            <div class="mega-col">
+                                <h4 class="mega-heading">Plans by Bedrooms</h4>
+                                <a href="bestseller.html">5+ Bedrooms</a>
+                                <a href="bestseller.html">4 Bedrooms</a>
+                                <a href="bestseller.html">3 Bedrooms</a>
+                                <a href="bestseller.html">2 Bedrooms</a>
+                                <a href="bestseller.html">1 Bedroom</a>
+                            </div>
+                            <div class="mega-col">
+                                <h4 class="mega-heading">Plans by Floors</h4>
+                                <a href="bestseller.html">1 Floor</a>
+                                <a href="bestseller.html">2 Floors</a>
+                                <a href="bestseller.html">3 Floors</a>
+                                <a href="bestseller.html">4+ Floors</a>
+                            </div>
+                            <div class="mega-thumb">
+                                <img src="src/images/placeholderImg2.jpg" alt="Swedish Countryside" />
+                                <span class="thumb-label">Swedish Countryside</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle">By Style <span class="material-symbols-rounded"
+                            style="font-size:18px">expand_more</span></a>
+                    <div class="dropdown-panel simple-menu" role="menu">
+                        <a href="bestseller.html">Modern House Plans</a>
+                        <a href="bestseller.html">Contemporary House Plans</a>
+                        <a href="bestseller.html">Bungalow House Plans</a>
+                        <a href="bestseller.html">Luxury House Plans</a>
+                        <a href="bestseller.html">Rustic House Plans</a>
+                        <a href="bestseller.html">Country House Plans</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle">By Budget <span class="material-symbols-rounded"
+                            style="font-size:18px">expand_more</span></a>
+                    <div class="dropdown-panel simple-menu" role="menu">
+                        <a href="bestseller.html">Under $100 Plans</a>
+                        <a href="bestseller.html">$100 to $300 Plans</a>
+                        <a href="bestseller.html">$300 to $500 Plans</a>
+                        <a href="bestseller.html">$500 to $700 Plans</a>
+                        <a href="bestseller.html">$700+ Plans</a>
+                    </div>
+                </div>
+                <a href="https://wa.me/255659966930?text=Hi%2C%20I%27m%20interested%20in%20a%20custom%20house%20plan.%20Can%20you%20help%20me%3F" target="_blank" rel="noopener">Custom Plan</a>
+                <a href="services.html">Services</a>
+            </nav>
+
+            <div class="actions" aria-label="Utilities">
+                <a class="icon-btn" href="#" title="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 21l-4.2-4.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                    </svg>
+                </a>
+                <a class="icon-btn" href="#" title="Favorites">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 21s-7-4.4-7-10a4.1 4.1 0 0 1 7-2.8A4.1 4.1 0 0 1 19 11c0 5.6-7 10-7 10Z"
+                            stroke="currentColor" stroke-width="2" fill="none" />
+                    </svg>
+                    <span id="favoritesCount" class="favorites-badge"></span>
+                </a>
+                <a class="icon-btn" href="#" title="Compare">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 20V10M18 20V4M10 20V14M14 20V7" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="services-hero">
+        <div class="services-hero-content">
+            <h1>Professional Construction & Design Services</h1>
+            <p>Monisa Construction delivers excellence in every project. From architectural design to complete construction, we bring your vision to life with precision, quality, and professionalism.</p>
+            
+            <div class="services-hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">500+</span>
+                    <span class="hero-stat-label">Projects Completed</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">15+</span>
+                    <span class="hero-stat-label">Years Experience</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">100%</span>
+                    <span class="hero-stat-label">Client Satisfaction</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Introduction -->
+    <section class="services-intro">
+        <h2>Our Core Services</h2>
+        <p>We offer a comprehensive suite of construction and design services, ensuring your project is handled with expertise from concept to completion. Our team of experienced professionals is committed to delivering exceptional results.</p>
+    </section>
+
+    <!-- Services Grid -->
+    <div class="services-grid">
+        <!-- Service 1: Construction -->
+        <div class="service-card">
+            <div class="service-card-image">
+                <img src="src/images/placeholderImg1.jpg" alt="Construction Services">
+                <div class="service-card-overlay">
+                    <div class="service-icon">
+                        <span class="material-symbols-rounded">construction</span>
+                    </div>
+                </div>
+                <div class="service-number">01</div>
+            </div>
+            <div class="service-card-content">
+                <h3>Construction</h3>
+                <p>Complete construction services from foundation to finishing. We manage every aspect of your building project with skilled craftsmen and quality materials to ensure exceptional results.</p>
+                <ul class="service-features">
+                    <li>Residential & commercial construction</li>
+                    <li>Project management & supervision</li>
+                    <li>Quality materials & workmanship</li>
+                    <li>On-time delivery & budget control</li>
+                </ul>
+                <a href="https://wa.me/255659966930?text=Hi%2C%20I%27m%20interested%20in%20construction%20services" target="_blank" rel="noopener" class="service-cta">
+                    <span>Request Quote</span>
+                    <span class="material-symbols-rounded">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Service 2: Architectural Design -->
+        <div class="service-card">
+            <div class="service-card-image">
+                <img src="src/images/placeholderImg2.jpg" alt="Architectural Design">
+                <div class="service-card-overlay">
+                    <div class="service-icon">
+                        <span class="material-symbols-rounded">architecture</span>
+                    </div>
+                </div>
+                <div class="service-number">02</div>
+            </div>
+            <div class="service-card-content">
+                <h3>Architectural Design</h3>
+                <p>Custom architectural designs tailored to your vision and needs. Our experienced architects create functional, beautiful spaces that maximize your plot and budget.</p>
+                <ul class="service-features">
+                    <li>Custom house plans & floor layouts</li>
+                    <li>3D visualizations & renderings</li>
+                    <li>Site analysis & planning</li>
+                    <li>Permit-ready drawings</li>
+                </ul>
+                <a href="https://wa.me/255659966930?text=Hi%2C%20I%27m%20interested%20in%20architectural%20design%20services" target="_blank" rel="noopener" class="service-cta">
+                    <span>Get Started</span>
+                    <span class="material-symbols-rounded">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Service 3: Bill of Quantities -->
+        <div class="service-card">
+            <div class="service-card-image">
+                <img src="src/images/placeholderImg1.jpg" alt="Bill of Quantities">
+                <div class="service-card-overlay">
+                    <div class="service-icon">
+                        <span class="material-symbols-rounded">calculate</span>
+                    </div>
+                </div>
+                <div class="service-number">03</div>
+            </div>
+            <div class="service-card-content">
+                <h3>Bill of Quantities</h3>
+                <p>Detailed cost breakdowns and material estimates for accurate budgeting. We provide comprehensive BOQs to help you plan and control your construction costs effectively.</p>
+                <ul class="service-features">
+                    <li>Detailed material quantities</li>
+                    <li>Labor cost estimates</li>
+                    <li>Market price analysis</li>
+                    <li>Budget planning & control</li>
+                </ul>
+                <a href="https://wa.me/255659966930?text=Hi%2C%20I%20need%20a%20Bill%20of%20Quantities" target="_blank" rel="noopener" class="service-cta">
+                    <span>Get Estimate</span>
+                    <span class="material-symbols-rounded">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Service 4: Structural Design -->
+        <div class="service-card">
+            <div class="service-card-image">
+                <img src="src/images/placeholderImg2.jpg" alt="Structural Design">
+                <div class="service-card-overlay">
+                    <div class="service-icon">
+                        <span class="material-symbols-rounded">foundation</span>
+                    </div>
+                </div>
+                <div class="service-number">04</div>
+            </div>
+            <div class="service-card-content">
+                <h3>Structural Design</h3>
+                <p>Professional structural engineering to ensure your building is safe, stable, and code-compliant. Our engineers design robust structures that stand the test of time.</p>
+                <ul class="service-features">
+                    <li>Foundation & footing design</li>
+                    <li>Beam, column & slab calculations</li>
+                    <li>Load analysis & safety checks</li>
+                    <li>Engineer-stamped drawings</li>
+                </ul>
+                <a href="https://wa.me/255659966930?text=Hi%2C%20I%20need%20structural%20design%20services" target="_blank" rel="noopener" class="service-cta">
+                    <span>Learn More</span>
+                    <span class="material-symbols-rounded">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Service Section -->
+    <section class="featured-service">
+        <div class="featured-service-inner">
+            <div class="featured-service-content">
+                <h2>Why Choose Monisa Construction?</h2>
+                <p>With over 15 years of experience in the construction industry, we've built a reputation for excellence, reliability, and innovation. Our commitment to quality and client satisfaction sets us apart.</p>
+                
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="material-symbols-rounded">verified</span>
+                        <div>
+                            <h4>Licensed & Certified</h4>
+                            <p>Fully licensed professionals with proven expertise</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-symbols-rounded">engineering</span>
+                        <div>
+                            <h4>Expert Team</h4>
+                            <p>Skilled architects, engineers & craftsmen</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-symbols-rounded">workspace_premium</span>
+                        <div>
+                            <h4>Quality Assurance</h4>
+                            <p>Rigorous quality control at every stage</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-symbols-rounded">schedule</span>
+                        <div>
+                            <h4>On-Time Delivery</h4>
+                            <p>Projects completed within agreed timelines</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://wa.me/255659966930?text=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20Monisa%20Construction" target="_blank" rel="noopener" class="service-cta">
+                    <span>Contact Us Today</span>
+                    <span class="material-symbols-rounded">arrow_forward</span>
+                </a>
+            </div>
+            <div class="featured-service-image">
+                <img src="src/images/placeholderImg2.jpg" alt="Monisa Construction">
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="services-cta-section">
+        <h2>Ready to Build Your Dream?</h2>
+        <p>Partner with Monisa Construction for professional, reliable, and quality construction services. Contact us today for a free consultation.</p>
+        <div class="cta-buttons">
+            <a href="https://wa.me/255659966930?text=Hi%2C%20I%27m%20ready%20to%20start%20my%20construction%20project" target="_blank" rel="noopener" class="cta-btn-primary">
+                <span class="material-symbols-rounded">chat</span>
+                <span>Get Free Consultation</span>
+            </a>
+            <a href="index.html" class="cta-btn-secondary">
+                <span class="material-symbols-rounded">home</span>
+                <span>View House Plans</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp -->
+    <a class="whatsapp" href="https://wa.me/255659966930" target="_blank" rel="noopener">
+        <span class="wa-bubble">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M20.5 12A8.5 8.5 0 1 1 6.6 19.9L3.5 21l1.2-3a8.5 8.5 0 0 1 15.8-6.1z" stroke="white"
+                    stroke-width="2" opacity=".25" />
+                <path
+                    d="M16.7 14.5c-.2.6-1.3 1.1-1.8 1.1-.5 0-1.8-.2-3.3-1.4-1.4-1.1-2.4-2.6-2.6-3.1-.2-.5-.2-1.2.3-1.7.2-.2.5-.6.6-.8.1-.2.2-.4.4-.4.2 0 .3 0 .4.1l.9 1.2c.1.2.1.4 0 .6-.1.2-.3.4-.4.6-.1.1-.1.2 0 .4.2.5.8 1.3 1.4 1.7.7.5 1.2.6 1.4.6.1 0 .3 0 .4-.2l.7-.8c.1-.1.3-.1.5 0l1.3.6c.2.1.2.2.2.4z"
+                    fill="white" />
+            </svg>
+        </span>
+        <span>WhatsApp</span>
+    </a>
+
+    <!-- FOOTER -->
+    <footer class="site-footer" aria-label="Site footer">
+        <div class="footer-top">
+            <div class="footer-newsletter">
+                <h3 class="footer-newsletter-title">From Dream to Home</h3>
+                <p class="footer-newsletter-sub">Get fresh house plan ideas, tips and exclusive offers.</p>
+                <form class="newsletter-form" action="#" method="post" onsubmit="return false">
+                    <label class="sr-only" for="nl-email">Email</label>
+                    <input id="nl-email" type="email" placeholder="Enter your email" required>
+                    <button type="submit"><span class="material-symbols-rounded">send</span>Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a class="brand footer-brand" href="#">
+                    <img src="src/images/logo.png" alt="Monisa logo" width="120" height="50">
+                </a>
+                <p class="footer-text">We help you discover, customize and purchase architectural plans that fit your
+                    lifestyle and budget.</p>
+                <div class="footer-social" aria-label="Social links">
+                    <a href="#" aria-label="Facebook"><span class="material-symbols-rounded">thumb_up</span></a>
+                    <a href="#" aria-label="Instagram"><span class="material-symbols-rounded">photo_camera</span></a>
+                    <a href="#" aria-label="Twitter"><span class="material-symbols-rounded">alternate_email</span></a>
+                    <a href="#" aria-label="YouTube"><span class="material-symbols-rounded">play_circle</span></a>
+                </div>
+            </div>
+
+            <nav class="footer-col" aria-label="Shop">
+                <h4 class="footer-title">Shop</h4>
+                <ul class="footer-links">
+                    <li><a href="bestseller.html">Best Sellers</a></li>
+                    <li><a href="#">By Size</a></li>
+                    <li><a href="#">By Style</a></li>
+                    <li><a href="#">By Budget</a></li>
+                    <li><a href="https://wa.me/255659966930?text=Hi%2C%20I%27m%20interested%20in%20a%20custom%20house%20plan.%20Can%20you%20help%20me%3F" target="_blank" rel="noopener">Custom Plan</a></li>
+                </ul>
+            </nav>
+
+            <nav class="footer-col" aria-label="Help">
+                <h4 class="footer-title">Help</h4>
+                <ul class="footer-links">
+                    <li><a href="#">How it works</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Licensing</a></li>
+                    <li><a href="#">Refund policy</a></li>
+                    <li><a href="#">Contact support</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer-col" aria-label="Contact">
+                <h4 class="footer-title">Contact</h4>
+                <ul class="footer-contact">
+                    <li><span class="material-symbols-rounded">mail</span> support@monisa.example</li>
+                    <li><span class="material-symbols-rounded">call</span> +255 659 966 930</li>
+                    <li><span class="material-symbols-rounded">schedule</span> Mon–Fri, 9am–6pm</li>
+                    <li><span class="material-symbols-rounded">pin_drop</span> Tanzania</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-copy">© 2025 Monisa. All rights reserved.</div>
+            <div class="footer-legal">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="search-modal">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-wrapper">
+                    <span class="material-symbols-rounded">search</span>
+                    <input type="text" id="searchInput" placeholder="Search house plans by name, style, bedrooms..."
+                        autocomplete="off">
+                </div>
+                <button id="closeSearch" aria-label="Close search">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div class="search-filters">
+                <span class="filter-label">Quick Filters:</span>
+                <button class="quick-filter" data-filter-type="bedrooms" data-filter-value="1">1 Bedroom</button>
+                <button class="quick-filter" data-filter-type="bedrooms" data-filter-value="2">2 Bedrooms</button>
+                <button class="quick-filter" data-filter-type="bedrooms" data-filter-value="3">3 Bedrooms</button>
+                <button class="quick-filter" data-filter-type="bedrooms" data-filter-value="4">4+ Bedrooms</button>
+                <button class="quick-filter" data-filter-type="style" data-filter-value="Modern">Modern</button>
+                <button class="quick-filter" data-filter-type="style" data-filter-value="Contemporary">Contemporary</button>
+                <button class="quick-filter" data-filter-type="style" data-filter-value="Luxury">Luxury</button>
+                <button class="quick-filter" data-filter-type="price" data-filter-value="0-200">Under $200</button>
+                <button class="quick-filter" data-filter-type="price" data-filter-value="200-500">$200-$500</button>
+                <button class="quick-filter" data-filter-type="price" data-filter-value="500-99999">$500+</button>
+            </div>
+            <div class="search-results-header">
+                <span id="resultsCount">0 results</span>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    </div>
+
+    <!-- Favorites Popup -->
+    <div id="favoritesPopup" class="favorites-popup">
+        <div class="favorites-popup-container">
+            <div class="favorites-popup-header">
+                <h2 class="favorites-popup-title">My Favorites</h2>
+                <button id="closeFavoritesPopup" class="favorites-popup-close">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div class="favorites-popup-actions">
+                <span id="favoritesPopupCount" class="favorites-popup-count">0 saved plans</span>
+                <button id="clearAllFavoritesBtn" class="favorites-popup-clear">Clear All</button>
+            </div>
+            <div class="favorites-popup-body">
+                <div id="favoritesPopupEmpty" class="favorites-popup-empty" style="display: none;">
+                    <span class="material-symbols-rounded">favorite_border</span>
+                    <h3>No favorites yet</h3>
+                    <p>Start adding house plans to your favorites</p>
+                </div>
+                <div id="favoritesPopupGrid" class="favorites-popup-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+    <script src="search.js"></script>
+    <script src="favorites.js"></script>
+</body>
+
+</html>
