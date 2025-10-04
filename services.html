@@ -200,11 +200,16 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 40px;
-            max-width: 1300px;
-            margin: 0 auto 100px;
+            margin: 60px auto;
             padding: 0 5%;
+        }
+
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         .service-card {
@@ -1527,83 +1532,7 @@
         </div>
     </div>
 
-    <!-- Process Timeline Section -->
-    <section class="process-timeline">
-        <div class="timeline-container">
-            <h2 class="timeline-title">Our Proven Process</h2>
-            <p class="timeline-subtitle">From concept to completion, we guide you through every step</p>
-            
-            <div class="timeline-wrapper">
-                <div class="timeline-line"></div>
-                
-                <div class="timeline-item" data-step="1">
-                    <div class="timeline-marker">
-                        <span class="material-symbols-rounded">chat</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Initial Consultation</h3>
-                        <p>We discuss your vision, requirements, and budget to understand your project goals.</p>
-                        <span class="timeline-duration">1-2 Days</span>
-                    </div>
-                </div>
-                
-                <div class="timeline-item" data-step="2">
-                    <div class="timeline-marker">
-                        <span class="material-symbols-rounded">architecture</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Design & Planning</h3>
-                        <p>Our architects create detailed plans and 3D visualizations of your project.</p>
-                        <span class="timeline-duration">2-3 Weeks</span>
-                    </div>
-                </div>
-                
-                <div class="timeline-item" data-step="3">
-                    <div class="timeline-marker">
-                        <span class="material-symbols-rounded">task_alt</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Approval & Permits</h3>
-                        <p>We handle all necessary approvals and obtain required construction permits.</p>
-                        <span class="timeline-duration">1-2 Weeks</span>
-                    </div>
-                </div>
-                
-                <div class="timeline-item" data-step="4">
-                    <div class="timeline-marker">
-                        <span class="material-symbols-rounded">construction</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Construction Phase</h3>
-                        <p>Our skilled team begins construction with regular progress updates.</p>
-                        <span class="timeline-duration">3-6 Months</span>
-                    </div>
-                </div>
-                
-                <div class="timeline-item" data-step="5">
-                    <div class="timeline-marker">
-                        <span class="material-symbols-rounded">verified</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Quality Inspection</h3>
-                        <p>Thorough inspection to ensure everything meets our quality standards.</p>
-                        <span class="timeline-duration">3-5 Days</span>
-                    </div>
-                </div>
-                
-                <div class="timeline-item" data-step="6">
-                    <div class="timeline-marker">
-                        <span class="material-symbols-rounded">celebration</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Project Handover</h3>
-                        <p>We deliver your completed project with all documentation and warranties.</p>
-                        <span class="timeline-duration">1 Day</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Interactive Service Features Tabs -->
     <section class="service-tabs-section">
